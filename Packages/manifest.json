@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "cn.etetet.yiuiframework": "3.0.3",
+    "cn.etetet.yiuiluban": "3.0.6",
     "cn.etetet.yiuistatesync": "3.0.2",
     "com.unity.ai.navigation": "2.0.4",
     "com.unity.ide.rider": "3.0.31",

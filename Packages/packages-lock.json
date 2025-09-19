@@ -245,6 +245,23 @@
         "cn.etetet.core": "3.0.3"
       }
     },
+    "cn.etetet.yiuiluban": {
+      "version": "file:cn.etetet.yiuiluban",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "cn.etetet.core": "1.0.0"
+      }
+    },
+    "cn.etetet.yiuilubangen": {
+      "version": "file:cn.etetet.yiuilubangen",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "cn.etetet.core": "1.0.0",
+        "cn.etetet.loader": "1.0.0"
+      }
+    },
     "cn.etetet.yiuireddot": {
       "version": "file:cn.etetet.yiuireddot",
       "depth": 0,
