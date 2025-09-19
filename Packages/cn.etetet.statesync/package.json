@@ -1,7 +1,7 @@
-{
+﻿{
   "name": "cn.etetet.statesync",
   "displayName": "ET.StateSync",
-  "version": "3.0.11",
+  "version": "3.0.12",
   "unity": "2022.3",
   "description": "statesync demo",
   "author": {
@@ -14,7 +14,7 @@
   },
   "relatedPackages": {},
   "dependencies": {
-    "cn.etetet.packagemanager": "1.0.0",
+    "cn.etetet.packagemanager": "1.0.7",
     "cn.etetet.actorlocation": "3.0.0",
     "cn.etetet.core": "3.0.3",
     "cn.etetet.loader": "3.0.1",

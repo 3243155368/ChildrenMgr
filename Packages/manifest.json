@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "cn.etetet.yiuiframework": "3.0.3",
+    "cn.etetet.yiuistatesync": "3.0.2",
     "com.unity.ai.navigation": "2.0.4",
     "com.unity.ide.rider": "3.0.31",
     "com.unity.ide.visualstudio": "2.0.22",
@@ -35,8 +37,7 @@
     "com.unity.modules.unitywebrequestwww": "1.0.0",
     "com.unity.modules.vehicles": "1.0.0",
     "com.unity.modules.video": "1.0.0",
-    "com.unity.modules.wind": "1.0.0",
-    "cn.etetet.yiuistatesync": "3.0.2"
+    "com.unity.modules.wind": "1.0.0"
   },
   "scopedRegistries": [
     {
