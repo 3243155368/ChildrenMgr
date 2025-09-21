@@ -146,7 +146,7 @@ MonoBehaviour:
   - Name: com.unity.modules.assetbundle
     Version: 1.0.0
   - Name: com.unity.modules.animation
-    Version: 
+    Version: 1.0.0
   - Name: com.unity.modules.androidjni
     Version: 1.0.0
   - Name: com.unity.modules.ai
@@ -174,5 +174,5 @@ MonoBehaviour:
   - Name: cn.etetet.yiuiframework
     Version: 3.0.3
   BanPackageInfo: []
-  LastUpdateTime: 1758422569
+  LastUpdateTime: 1758426339
   UpdateInterval: 3600
