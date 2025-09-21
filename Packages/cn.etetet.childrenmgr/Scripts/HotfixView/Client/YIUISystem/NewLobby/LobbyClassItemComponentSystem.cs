@@ -39,7 +39,6 @@ namespace ET.Client
         [YIUIInvoke(LobbyClassItemComponent.OnEventSelectInvoke)]
         private static void OnEventSelectInvoke(this LobbyClassItemComponent self)
         {
-            self.SelectItem(true);
         }
         #endregion YIUIEvent结束
     }

@@ -42,9 +42,9 @@ namespace ET.Client
         }
 
         [EntitySystem]
-        private static void YIUILoopOnClick(this NewLobbyPanelComponent self, LobbyClassItemComponent item, int data, int index, bool select)
+        private static void YIUILoopOnClick(this NewLobbyPanelComponent self, LobbyClassItemComponent item, string data, int index, bool select)
         {
-            Log.Error("点击了" + data);
+            item.SelectItem(select);
         }
         
         #region YIUIEvent开始
