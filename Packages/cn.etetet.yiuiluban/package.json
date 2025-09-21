@@ -4,7 +4,7 @@
   "version": "3.0.6",
   "unity": "2022.3",
   "category": "Config/Luban|UI/YIUI",
-  "description": "Luban 配置工具 >>> 文档: https://lib9kmxvq7k.feishu.cn/wiki/W1ylwC9xDip1YQk4eijcxgO9nh0",
+  "description": "Luban \u914d\u7f6e\u5de5\u5177 >>> \u6587\u6863: https://lib9kmxvq7k.feishu.cn/wiki/W1ylwC9xDip1YQk4eijcxgO9nh0",
   "author": {
     "name": "YIYI",
     "url": "https://github.com/LiShengYang-yiyi/YIUI/tree/YIUI-ET9.0"
@@ -15,7 +15,7 @@
   },
   "relatedPackages": {},
   "dependencies": {
-    "cn.etetet.core": "1.0.0"
+    "cn.etetet.core": "3.0.3"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@ET-Packages"
