@@ -1,0 +1,11 @@
+﻿{
+    "Id": 200,
+    "Name": "childrenmgr",
+    "ScriptsReferences": 
+    {
+        "Hotfix": ["ET.ChildrenMgr"],
+        "HotfixView": ["ET.ChildrenMgr"],
+        "Model": ["ET.ChildrenMgr"],
+        "ModelView": ["ET.ChildrenMgr"]
+    }
+}

@@ -25,14 +25,14 @@ MonoBehaviour:
     Version: 3.0.0
   - Name: cn.etetet.yiuireddot
     Version: 3.0.0
+  - Name: cn.etetet.yiuilubangen
+    Version: 
   - Name: cn.etetet.yiuiloopscrollrectasync
     Version: 3.0.0
   - Name: cn.etetet.yiuiinvoke
     Version: 4.0.3
   - Name: cn.etetet.yiuigm
     Version: 3.0.0
-  - Name: cn.etetet.yiuiframework
-    Version: 3.0.3
   - Name: cn.etetet.yiuieffect
     Version: 3.0.0
   - Name: cn.etetet.yiui3ddisplay
@@ -87,14 +87,14 @@ MonoBehaviour:
     Version: 3.0.3
   - Name: cn.etetet.console
     Version: 3.0.0
+  - Name: cn.etetet.childrenmgr
+    Version: 
   - Name: cn.etetet.aoi
     Version: 3.0.0
   - Name: cn.etetet.ai
     Version: 3.0.0
   - Name: cn.etetet.actorlocation
     Version: 3.0.0
-  - Name: cn.etetet.yiuistatesync
-    Version: 3.0.2
   - Name: com.unity.modules.wind
     Version: 1.0.0
   - Name: com.unity.modules.video
@@ -146,7 +146,7 @@ MonoBehaviour:
   - Name: com.unity.modules.assetbundle
     Version: 1.0.0
   - Name: com.unity.modules.animation
-    Version: 1.0.0
+    Version: 
   - Name: com.unity.modules.androidjni
     Version: 1.0.0
   - Name: com.unity.modules.ai
@@ -167,6 +167,12 @@ MonoBehaviour:
     Version: 3.0.38
   - Name: com.unity.ai.navigation
     Version: 2.0.9
+  - Name: cn.etetet.yiuistatesync
+    Version: 3.0.2
+  - Name: cn.etetet.yiuiluban
+    Version: 3.0.6
+  - Name: cn.etetet.yiuiframework
+    Version: 3.0.3
   BanPackageInfo: []
-  LastUpdateTime: 1758247496
+  LastUpdateTime: 1758422569
   UpdateInterval: 3600

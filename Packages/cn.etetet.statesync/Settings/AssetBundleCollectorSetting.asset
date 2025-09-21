@@ -187,3 +187,11 @@ MonoBehaviour:
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
+      - CollectPath: Packages/cn.etetet.childrenmgr/Assets/GameRes/YIUI
+        CollectorGUID: b843bf58b90c178468743411eeca4a63
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 
