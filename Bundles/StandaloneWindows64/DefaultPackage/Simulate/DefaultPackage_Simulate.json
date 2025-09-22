@@ -8,7 +8,7 @@
     "BuildPipeline": "EditorSimulateBuildPipeline",
     "PackageName": "DefaultPackage",
     "PackageVersion": "Simulate",
-    "PackageNote": "2025/9/21 11:52:16",
+    "PackageNote": "2025/9/22 12:33:39",
     "AssetList": [
         {
             "Address": "YIUIConstAsset",
@@ -291,8 +291,48 @@
             "DependBundleIDs": []
         },
         {
+            "Address": "GradeClassConfigCategory",
+            "AssetPath": "Packages/cn.etetet.yiuilubangen/Assets/LubanGen/Config/Json/Client/GradeClassConfigCategory.json",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 17,
+            "DependBundleIDs": []
+        },
+        {
+            "Address": "SchoolGradeConfigCategory",
+            "AssetPath": "Packages/cn.etetet.yiuilubangen/Assets/LubanGen/Config/Json/Client/SchoolGradeConfigCategory.json",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 17,
+            "DependBundleIDs": []
+        },
+        {
             "Address": "UnitConfigCategory",
             "AssetPath": "Packages/cn.etetet.yiuilubangen/Assets/LubanGen/Config/Json/Client/UnitConfigCategory.json",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 17,
+            "DependBundleIDs": []
+        },
+        {
+            "Address": "YIUIClientConfigCategory",
+            "AssetPath": "Packages/cn.etetet.yiuilubangen/Assets/LubanGen/Config/Json/Client/YIUIClientConfigCategory.json",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 17,
+            "DependBundleIDs": []
+        },
+        {
+            "Address": "YIUIClientServerConfigCategory",
+            "AssetPath": "Packages/cn.etetet.yiuilubangen/Assets/LubanGen/Config/Json/Client/YIUIClientServerConfigCategory.json",
+            "AssetGUID": "",
+            "AssetTags": [],
+            "BundleID": 17,
+            "DependBundleIDs": []
+        },
+        {
+            "Address": "YIUIItemConfigCategory",
+            "AssetPath": "Packages/cn.etetet.yiuilubangen/Assets/LubanGen/Config/Json/Client/YIUIItemConfigCategory.json",
             "AssetGUID": "",
             "AssetTags": [],
             "BundleID": 17,
@@ -411,7 +451,7 @@
             "UnityCRC": 0,
             "FileHash": "bb6a6a0043da5d8521b32be742fba880",
             "FileCRC": "00000000",
-            "FileSize": 34488,
+            "FileSize": 32852,
             "Encrypted": false,
             "Tags": [],
             "DependBundleIDs": []
@@ -471,7 +511,7 @@
             "UnityCRC": 0,
             "FileHash": "7daaa161a06c1d8be86b3a67bd121068",
             "FileCRC": "00000000",
-            "FileSize": 1579500,
+            "FileSize": 1605980,
             "Encrypted": false,
             "Tags": [],
             "DependBundleIDs": []
@@ -571,7 +611,7 @@
             "UnityCRC": 0,
             "FileHash": "6063bd10a5269617bccae81bef4b9c82",
             "FileCRC": "00000000",
-            "FileSize": 799,
+            "FileSize": 6557,
             "Encrypted": false,
             "Tags": [],
             "DependBundleIDs": []

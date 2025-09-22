@@ -10,7 +10,7 @@
 using Luban;
 
 
-namespace ET
+namespace ET.SchoolGrade
 {
     [EnableClass]
     public sealed partial class GradeClassConfig : Luban.BeanBase
@@ -25,7 +25,7 @@ namespace ET
 
         public static GradeClassConfig DeserializeGradeClassConfig(ByteBuf _buf)
         {
-            return new GradeClassConfig(_buf);
+            return new SchoolGrade.GradeClassConfig(_buf);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace ET
         /// </summary>
         public readonly string Grade;
     
-        public const int __ID__ = 2004143779;
+        public const int __ID__ = 1787889806;
         public override int GetTypeId() => __ID__;
 
         public  void ResolveRef()

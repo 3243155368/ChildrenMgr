@@ -10,37 +10,37 @@
 using Luban;
 using System.Collections.Generic;
 
-namespace ET
+namespace ET.SchoolGrade
 {
 
     [Config]
     public partial class SchoolGradeConfigCategory : Singleton<SchoolGradeConfigCategory>, ILubanConfig
     {
-        private readonly Dictionary<int, SchoolGradeConfig> _dataMap;
-        private readonly List<SchoolGradeConfig> _dataList;
+        private readonly Dictionary<int, SchoolGrade.SchoolGradeConfig> _dataMap;
+        private readonly List<SchoolGrade.SchoolGradeConfig> _dataList;
         
         public SchoolGradeConfigCategory(ByteBuf _buf)
         {
-            _dataMap = new Dictionary<int, SchoolGradeConfig>();
-            _dataList = new List<SchoolGradeConfig>();
+            _dataMap = new Dictionary<int, SchoolGrade.SchoolGradeConfig>();
+            _dataList = new List<SchoolGrade.SchoolGradeConfig>();
             
             for(int n = _buf.ReadSize() ; n > 0 ; --n)
             {
-                SchoolGradeConfig _v;
-                _v = global::ET.SchoolGradeConfig.DeserializeSchoolGradeConfig(_buf);
+                SchoolGrade.SchoolGradeConfig _v;
+                _v = global::ET.SchoolGrade.SchoolGradeConfig.DeserializeSchoolGradeConfig(_buf);
                 _dataList.Add(_v);
                 _dataMap.Add(_v.Id, _v);
             }
             EndInit();
         }
 
-        public Dictionary<int, SchoolGradeConfig> GetAll() => _dataMap;
-        public Dictionary<int, SchoolGradeConfig> DataMap => _dataMap;
-        public List<SchoolGradeConfig> DataList => _dataList;
+        public Dictionary<int, SchoolGrade.SchoolGradeConfig> GetAll() => _dataMap;
+        public Dictionary<int, SchoolGrade.SchoolGradeConfig> DataMap => _dataMap;
+        public List<SchoolGrade.SchoolGradeConfig> DataList => _dataList;
 
-        public SchoolGradeConfig GetOrDefault(int key) => _dataMap.GetValueOrDefault(key);
+        public SchoolGrade.SchoolGradeConfig GetOrDefault(int key) => _dataMap.GetValueOrDefault(key);
 
-        public SchoolGradeConfig Get(int key)
+        public SchoolGrade.SchoolGradeConfig Get(int key)
         {
             if (_dataMap.TryGetValue(key,out var v))
             {

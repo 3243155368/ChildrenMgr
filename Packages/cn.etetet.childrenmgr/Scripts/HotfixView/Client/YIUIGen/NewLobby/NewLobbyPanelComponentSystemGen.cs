@@ -38,6 +38,8 @@ namespace ET.Client
             self.UIPanel.CachePanelTime = 10;
 
             self.u_ComLoopScrollVerticalLoopVerticalScrollRect = self.UIBase.ComponentTable.FindComponent<UnityEngine.UI.LoopVerticalScrollRect>("u_ComLoopScrollVerticalLoopVerticalScrollRect");
+            self.u_EventReturn = self.UIBase.EventTable.FindEvent<UITaskEventP0>("u_EventReturn");
+            self.u_EventReturnHandle = self.u_EventReturn.Add(self,NewLobbyPanelComponent.OnEventReturnInvoke);
             self.u_EventEnter = self.UIBase.EventTable.FindEvent<UITaskEventP0>("u_EventEnter");
             self.u_EventEnterHandle = self.u_EventEnter.Add(self,NewLobbyPanelComponent.OnEventEnterInvoke);
 

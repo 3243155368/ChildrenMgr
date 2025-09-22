@@ -10,7 +10,7 @@
 using Luban;
 
 
-namespace ET
+namespace ET.SchoolGrade
 {
     [EnableClass]
     public sealed partial class SchoolGradeConfig : Luban.BeanBase
@@ -19,14 +19,14 @@ namespace ET
         {
             Id = _buf.ReadInt();
             GradeName = _buf.ReadString();
-            {int n0 = _buf.ReadSize(); ClassId = new System.Collections.Generic.List<int>(n0);for(var i0 = 0 ; i0 < n0 ; i0++) { int _e0;  _e0 = _buf.ReadInt(); ClassId.Add(_e0);}}
+            {int n0 = _buf.ReadSize(); ClassIds = new System.Collections.Generic.List<int>(n0);for(var i0 = 0 ; i0 < n0 ; i0++) { int _e0;  _e0 = _buf.ReadInt(); ClassIds.Add(_e0);}}
 
             EndInit();
         }
 
         public static SchoolGradeConfig DeserializeSchoolGradeConfig(ByteBuf _buf)
         {
-            return new SchoolGradeConfig(_buf);
+            return new SchoolGrade.SchoolGradeConfig(_buf);
         }
 
         /// <summary>
@@ -40,13 +40,17 @@ namespace ET
         /// <summary>
         /// 班级id
         /// </summary>
-        public readonly System.Collections.Generic.List<int> ClassId;
+        public readonly System.Collections.Generic.List<int> ClassIds;
+        public System.Collections.Generic.List<SchoolGrade.GradeClassConfig> ClassIds_Ref;
     
-        public const int __ID__ = -1442165307;
+        public const int __ID__ = 443896122;
         public override int GetTypeId() => __ID__;
 
         public  void ResolveRef()
         {
+            ClassIds_Ref = new System.Collections.Generic.List<SchoolGrade.GradeClassConfig>();
+            foreach (var _v in ClassIds) { ClassIds_Ref.Add(GradeClassConfigCategory.Instance.GetOrDefault(_v)); }
+
             EndRef();
         }
 
@@ -55,7 +59,7 @@ namespace ET
             return "{ "
             + "id:" + Id + ","
             + "gradeName:" + GradeName + ","
-            + "classId:" + Luban.StringUtil.CollectionToString(ClassId) + ","
+            + "classIds:" + Luban.StringUtil.CollectionToString(ClassIds) + ","
             + "}";
         }
 

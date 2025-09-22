@@ -1,7 +1,4 @@
-using System;
-using UnityEngine;
-using YIUIFramework;
-using System.Collections.Generic;
+using ET.SchoolGrade;
 
 namespace ET.Client
 {
@@ -23,9 +20,13 @@ namespace ET.Client
         {
         }
 
-        public static void ResetItem(this LobbyClassItemComponent self, string data)
+        public static void ResetItem(this LobbyClassItemComponent self, SchoolGradeConfig data)
         {
-            self.u_ComClassTxTText.text = data;
+            self.u_ComClassTxTText.text = data.GradeName;
+        }
+        public static void ResetItem(this LobbyClassItemComponent self, GradeClassConfig data)
+        {
+            self.u_ComClassTxTText.text = data.Grade;
         }
 
         public static void SelectItem(this LobbyClassItemComponent self, bool value)

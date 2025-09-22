@@ -23,6 +23,9 @@ namespace ET.Client
         public EntityRef<YIUIPanelComponent> u_UIPanel;
         public YIUIPanelComponent UIPanel => u_UIPanel;
         public UnityEngine.UI.LoopVerticalScrollRect u_ComLoopScrollVerticalLoopVerticalScrollRect;
+        public UITaskEventP0 u_EventReturn;
+        public UITaskEventHandleP0 u_EventReturnHandle;
+        public const string OnEventReturnInvoke = "NewLobbyPanelComponent.OnEventReturnInvoke";
         public UITaskEventP0 u_EventEnter;
         public UITaskEventHandleP0 u_EventEnterHandle;
         public const string OnEventEnterInvoke = "NewLobbyPanelComponent.OnEventEnterInvoke";

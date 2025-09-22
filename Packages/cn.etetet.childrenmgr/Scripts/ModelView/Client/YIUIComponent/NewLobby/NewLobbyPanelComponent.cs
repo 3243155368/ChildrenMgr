@@ -14,6 +14,7 @@ namespace ET.Client
     {
         public EntityRef<YIUILoopScrollChild> m_LoopScroll;
         public YIUILoopScrollChild LoopScroll => m_LoopScroll;
-        public List<string> LobbyClassData;
+        
+        public bool IsGradeClassSelect;
     }
 }
