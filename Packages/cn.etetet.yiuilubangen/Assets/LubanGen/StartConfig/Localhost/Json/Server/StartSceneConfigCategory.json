@@ -86,5 +86,13 @@
     "SceneType": "Map",
     "Name": "Map2",
     "Port": 0
+  },
+  {
+    "Id": 306,
+    "Process": 1,
+    "Zone": 3,
+    "SceneType": "Chat",
+    "Name": "Chat",
+    "Port": 0
   }
 ]
