@@ -68,12 +68,12 @@ MonoBehaviour:
       AssetTags: 
       ActiveRuleName: EnableGroup
       Collectors:
-      - CollectPath: Packages/cn.etetet.demores/Scenes
-        CollectorGUID: e528ff0fe84cd9a4587b007cc977279a
+      - CollectPath: Packages/cn.etetet.childrenmgr/Assets/GameRes/Scenes
+        CollectorGUID: 685a7c5e3a6b27b46b99bb3cb5ddb33d
         CollectorType: 0
         AddressRuleName: AddressByFileName
-        PackRuleName: PackSeparately
-        FilterRuleName: CollectScene
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
     - GroupName: UI
