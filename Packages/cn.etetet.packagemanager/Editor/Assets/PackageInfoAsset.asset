@@ -22,13 +22,15 @@ MonoBehaviour:
   - Name: cn.etetet.yiuiyooassets
     Version: 3.0.0
   - Name: cn.etetet.yiuitips
-    Version: 3.0.0
+    Version: 3.0.1
   - Name: cn.etetet.yiuireddot
     Version: 3.0.0
   - Name: cn.etetet.yiuilubangen
     Version: 
+  - Name: cn.etetet.yiuilubandemo
+    Version: 
   - Name: cn.etetet.yiuiloopscrollrectasync
-    Version: 3.0.0
+    Version: 3.0.1
   - Name: cn.etetet.yiuiinvoke
     Version: 4.0.3
   - Name: cn.etetet.yiuigm
@@ -36,7 +38,7 @@ MonoBehaviour:
   - Name: cn.etetet.yiuieffect
     Version: 3.0.0
   - Name: cn.etetet.yiui3ddisplay
-    Version: 3.0.0
+    Version: 3.0.1
   - Name: cn.etetet.yiui
     Version: 
   - Name: cn.etetet.watcher
@@ -46,13 +48,13 @@ MonoBehaviour:
   - Name: cn.etetet.ui
     Version: 3.0.0
   - Name: cn.etetet.statesync
-    Version: 3.0.11
+    Version: 3.0.12
   - Name: cn.etetet.startconfig
     Version: 3.0.0
   - Name: cn.etetet.sourcegenerator
     Version: 3.0.1
   - Name: cn.etetet.router
-    Version: 3.0.0
+    Version: 3.0.1
   - Name: cn.etetet.referencecollector
     Version: 3.0.0
   - Name: cn.etetet.recast
@@ -162,7 +164,7 @@ MonoBehaviour:
   - Name: com.unity.multiplayer.center
     Version: 1.0.0
   - Name: com.unity.ide.visualstudio
-    Version: 2.0.23
+    Version: 2.0.25
   - Name: com.unity.ide.rider
     Version: 3.0.38
   - Name: com.unity.ai.navigation
@@ -172,7 +174,7 @@ MonoBehaviour:
   - Name: cn.etetet.yiuiluban
     Version: 3.0.6
   - Name: cn.etetet.yiuiframework
-    Version: 3.0.3
+    Version: 3.0.4
   BanPackageInfo: []
-  LastUpdateTime: 1758426339
+  LastUpdateTime: 1760409136
   UpdateInterval: 3600
