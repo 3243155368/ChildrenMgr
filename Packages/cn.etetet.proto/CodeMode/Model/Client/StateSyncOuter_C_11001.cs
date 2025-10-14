@@ -352,130 +352,6 @@ namespace ET
     }
 
     [MemoryPackable]
-    [Message(StateSyncOuter.C2M_PathfindingResult)]
-    public partial class C2M_PathfindingResult : MessageObject, ILocationMessage
-    {
-        public static C2M_PathfindingResult Create(bool isFromPool = false)
-        {
-            return ObjectPool.Fetch<C2M_PathfindingResult>(isFromPool);
-        }
-
-        [MemoryPackOrder(0)]
-        public int RpcId { get; set; }
-
-        [MemoryPackOrder(1)]
-        public Unity.Mathematics.float3 Position { get; set; }
-
-        public override void Dispose()
-        {
-            if (!this.IsFromPool)
-            {
-                return;
-            }
-
-            this.RpcId = default;
-            this.Position = default;
-
-            ObjectPool.Recycle(this);
-        }
-    }
-
-    [MemoryPackable]
-    [Message(StateSyncOuter.C2M_Stop)]
-    public partial class C2M_Stop : MessageObject, ILocationMessage
-    {
-        public static C2M_Stop Create(bool isFromPool = false)
-        {
-            return ObjectPool.Fetch<C2M_Stop>(isFromPool);
-        }
-
-        [MemoryPackOrder(0)]
-        public int RpcId { get; set; }
-
-        public override void Dispose()
-        {
-            if (!this.IsFromPool)
-            {
-                return;
-            }
-
-            this.RpcId = default;
-
-            ObjectPool.Recycle(this);
-        }
-    }
-
-    [MemoryPackable]
-    [Message(StateSyncOuter.M2C_PathfindingResult)]
-    public partial class M2C_PathfindingResult : MessageObject, IMessage
-    {
-        public static M2C_PathfindingResult Create(bool isFromPool = false)
-        {
-            return ObjectPool.Fetch<M2C_PathfindingResult>(isFromPool);
-        }
-
-        [MemoryPackOrder(0)]
-        public long Id { get; set; }
-
-        [MemoryPackOrder(1)]
-        public Unity.Mathematics.float3 Position { get; set; }
-
-        [MemoryPackOrder(2)]
-        public List<Unity.Mathematics.float3> Points { get; set; } = new();
-
-        public override void Dispose()
-        {
-            if (!this.IsFromPool)
-            {
-                return;
-            }
-
-            this.Id = default;
-            this.Position = default;
-            this.Points.Clear();
-
-            ObjectPool.Recycle(this);
-        }
-    }
-
-    [MemoryPackable]
-    [Message(StateSyncOuter.M2C_Stop)]
-    public partial class M2C_Stop : MessageObject, IMessage
-    {
-        public static M2C_Stop Create(bool isFromPool = false)
-        {
-            return ObjectPool.Fetch<M2C_Stop>(isFromPool);
-        }
-
-        [MemoryPackOrder(0)]
-        public int Error { get; set; }
-
-        [MemoryPackOrder(1)]
-        public long Id { get; set; }
-
-        [MemoryPackOrder(2)]
-        public Unity.Mathematics.float3 Position { get; set; }
-
-        [MemoryPackOrder(3)]
-        public Unity.Mathematics.quaternion Rotation { get; set; }
-
-        public override void Dispose()
-        {
-            if (!this.IsFromPool)
-            {
-                return;
-            }
-
-            this.Error = default;
-            this.Id = default;
-            this.Position = default;
-            this.Rotation = default;
-
-            ObjectPool.Recycle(this);
-        }
-    }
-
-    [MemoryPackable]
     [Message(StateSyncOuter.G2C_Test)]
     public partial class G2C_Test : MessageObject, ISessionMessage
     {
@@ -844,21 +720,17 @@ namespace ET
         public const ushort M2C_CreateMyUnit = 11010;
         public const ushort M2C_StartSceneChange = 11011;
         public const ushort M2C_RemoveUnits = 11012;
-        public const ushort C2M_PathfindingResult = 11013;
-        public const ushort C2M_Stop = 11014;
-        public const ushort M2C_PathfindingResult = 11015;
-        public const ushort M2C_Stop = 11016;
-        public const ushort G2C_Test = 11017;
-        public const ushort C2M_Reload = 11018;
-        public const ushort M2C_Reload = 11019;
-        public const ushort G2C_TestHotfixMessage = 11020;
-        public const ushort C2M_TestRobotCase = 11021;
-        public const ushort M2C_TestRobotCase = 11022;
-        public const ushort C2M_TestRobotCase2 = 11023;
-        public const ushort M2C_TestRobotCase2 = 11024;
-        public const ushort C2M_TransferMap = 11025;
-        public const ushort M2C_TransferMap = 11026;
-        public const ushort C2G_Benchmark = 11027;
-        public const ushort G2C_Benchmark = 11028;
+        public const ushort G2C_Test = 11013;
+        public const ushort C2M_Reload = 11014;
+        public const ushort M2C_Reload = 11015;
+        public const ushort G2C_TestHotfixMessage = 11016;
+        public const ushort C2M_TestRobotCase = 11017;
+        public const ushort M2C_TestRobotCase = 11018;
+        public const ushort C2M_TestRobotCase2 = 11019;
+        public const ushort M2C_TestRobotCase2 = 11020;
+        public const ushort C2M_TransferMap = 11021;
+        public const ushort M2C_TransferMap = 11022;
+        public const ushort C2G_Benchmark = 11023;
+        public const ushort G2C_Benchmark = 11024;
     }
 }

@@ -6,18 +6,6 @@
       "source": "embedded",
       "dependencies": {}
     },
-    "cn.etetet.ai": {
-      "version": "file:cn.etetet.ai",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "cn.etetet.aoi": {
-      "version": "file:cn.etetet.aoi",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
     "cn.etetet.childrenmgr": {
       "version": "file:cn.etetet.childrenmgr",
       "depth": 0,
@@ -82,12 +70,6 @@
     },
     "cn.etetet.memorypack": {
       "version": "file:cn.etetet.memorypack",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
-    "cn.etetet.move": {
-      "version": "file:cn.etetet.move",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}
@@ -163,9 +145,7 @@
         "cn.etetet.http": "3.0.0",
         "cn.etetet.recast": "3.0.0",
         "cn.etetet.numeric": "3.0.0",
-        "cn.etetet.move": "3.0.0",
         "cn.etetet.watcher": "3.0.0",
-        "cn.etetet.aoi": "3.0.0",
         "cn.etetet.ui": "3.0.0",
         "cn.etetet.referencecollector": "3.0.0",
         "cn.etetet.login": "3.0.0",
@@ -173,7 +153,6 @@
         "cn.etetet.hybridclr": "7.8.1",
         "cn.etetet.excel": "3.0.0",
         "cn.etetet.proto": "3.0.2",
-        "cn.etetet.ai": "3.0.0",
         "cn.etetet.sourcegenerator": "3.0.1",
         "cn.etetet.yooassets": "2.3.6",
         "cn.etetet.memorypack": "1.10.1",

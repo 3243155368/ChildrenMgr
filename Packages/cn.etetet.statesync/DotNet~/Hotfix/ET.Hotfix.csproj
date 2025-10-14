@@ -40,6 +40,8 @@
         <Compile Include="$(SolutionDir)Packages\cn.etetet.*\CodeMode\Hotfix\Server\**\*.cs">
             <Link>%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
+
+        <Compile Remove="..\..\..\cn.etetet.move\**" />
         
     </ItemGroup>
     <ItemGroup>

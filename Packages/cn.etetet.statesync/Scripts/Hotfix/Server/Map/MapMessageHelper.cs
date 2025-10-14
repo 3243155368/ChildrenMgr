@@ -20,19 +20,6 @@ namespace ET.Server
             removeUnits.Units.Add(sendUnit.Id);
             MapMessageHelper.SendToClient(unit, removeUnits);
         }
-        
-        public static void Broadcast(Unit unit, IMessage message)
-        {
-            (message as MessageObject).IsFromPool = false;
-            Dictionary<long, EntityRef<AOIEntity>> dict = unit.GetBeSeePlayers();
-            // 网络底层做了优化，同一个消息不会多次序列化
-            MessageLocationSenderOneType oneTypeMessageLocationType = unit.Root().GetComponent<MessageLocationSenderComponent>().Get(LocationType.GateSession);
-            foreach (AOIEntity u in dict.Values)
-            {
-                oneTypeMessageLocationType.Send(u.Unit.Id, message);
-            }
-        }
-        
         public static void SendToClient(Unit unit, IMessage message)
         {
             unit.Root().GetComponent<MessageLocationSenderComponent>().Get(LocationType.GateSession).Send(unit.Id, message);
