@@ -63,11 +63,6 @@ namespace ET.Client
         private static void YIUILoopOnClick(this NewLobbyPanelComponent self, LobbyClassItemComponent item, SchoolGradeConfig data, int index, bool select)
         {
             item.SelectItem(select);
-            if (select)
-            {
-                self.IsGradeClassSelect = false;
-                self.SetClassDataRefresh(data).NoContext(); 
-            }
         }
         
         [EntitySystem]
@@ -90,6 +85,18 @@ namespace ET.Client
         [YIUIInvoke(NewLobbyPanelComponent.OnEventEnterInvoke)]
         private static async ETTask OnEventEnterInvoke(this NewLobbyPanelComponent self)
         {
+            if (self.IsGradeClassSelect)
+            {
+                SchoolGradeConfig schoolGradeConfig = self.LoopScroll.GetSelectData<SchoolGradeConfig>()[0];
+                if (schoolGradeConfig == null)
+                {
+                    Log.Error("先选择年级");
+                    return;
+                }
+                self.IsGradeClassSelect = false;
+                await self.SetClassDataRefresh(schoolGradeConfig); 
+                return;
+            }
             GradeClassConfig gradeClassConfig = self.LoopScroll.GetSelectData<GradeClassConfig>()[0];
             if (gradeClassConfig == null)
             {
@@ -97,7 +104,8 @@ namespace ET.Client
                 return;
             }
             
-            await ETTask.CompletedTask;
+            await EnterMapHelper.EnterMapAsync(self.Root());
+            await self.UIPanel.CloseAsync();
         }
         #endregion YIUIEvent结束
     }
