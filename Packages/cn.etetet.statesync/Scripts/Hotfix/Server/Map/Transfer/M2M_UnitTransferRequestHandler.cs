@@ -20,8 +20,6 @@ namespace ET.Server
                 unit.AddComponent(entity);
             }
 
-            unit.AddComponent<PathfindingComponent, string>(scene.Name);
-
             unit.AddComponent<MailBoxComponent, int>(MailBoxType.OrderedMessage);
 
             // 通知客户端开始切场景
