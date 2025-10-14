@@ -57,8 +57,6 @@ MonoBehaviour:
     Version: 3.0.1
   - Name: cn.etetet.referencecollector
     Version: 3.0.0
-  - Name: cn.etetet.recast
-    Version: 3.0.0
   - Name: cn.etetet.proto
     Version: 3.0.2
   - Name: cn.etetet.packagemanager
@@ -66,8 +64,6 @@ MonoBehaviour:
   - Name: cn.etetet.numeric
     Version: 3.0.0
   - Name: cn.etetet.netinner
-    Version: 3.0.0
-  - Name: cn.etetet.move
     Version: 3.0.0
   - Name: cn.etetet.memorypack
     Version: 1.10.1
@@ -91,10 +87,6 @@ MonoBehaviour:
     Version: 3.0.0
   - Name: cn.etetet.childrenmgr
     Version: 
-  - Name: cn.etetet.aoi
-    Version: 3.0.0
-  - Name: cn.etetet.ai
-    Version: 3.0.0
   - Name: cn.etetet.actorlocation
     Version: 3.0.0
   - Name: com.unity.modules.wind
@@ -176,5 +168,5 @@ MonoBehaviour:
   - Name: cn.etetet.yiuiframework
     Version: 3.0.4
   BanPackageInfo: []
-  LastUpdateTime: 1760409136
+  LastUpdateTime: 1760450486
   UpdateInterval: 3600

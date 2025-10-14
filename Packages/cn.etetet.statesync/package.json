@@ -36,7 +36,8 @@
     "cn.etetet.sourcegenerator": "3.0.1",
     "cn.etetet.yooassets": "2.3.6",
     "cn.etetet.memorypack": "1.10.1",
-    "cn.etetet.startconfig": "3.0.0"
+    "cn.etetet.startconfig": "3.0.0",
+    "cn.etetet.db": "1.0.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@ET-Packages"
