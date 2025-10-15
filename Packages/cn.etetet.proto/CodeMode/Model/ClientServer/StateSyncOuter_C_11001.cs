@@ -32,73 +32,18 @@ namespace ET
         }
     }
 
-    [MemoryPackable]
-    [Message(StateSyncOuter.C2M_TestRequest)]
-    [ResponseType(nameof(M2C_TestResponse))]
-    public partial class C2M_TestRequest : MessageObject, ILocationRequest
-    {
-        public static C2M_TestRequest Create(bool isFromPool = false)
-        {
-            return ObjectPool.Fetch<C2M_TestRequest>(isFromPool);
-        }
-
-        [MemoryPackOrder(0)]
-        public int RpcId { get; set; }
-
-        [MemoryPackOrder(1)]
-        public string request { get; set; }
-
-        public override void Dispose()
-        {
-            if (!this.IsFromPool)
-            {
-                return;
-            }
-
-            this.RpcId = default;
-            this.request = default;
-
-            ObjectPool.Recycle(this);
-        }
-    }
-
-    [MemoryPackable]
-    [Message(StateSyncOuter.M2C_TestResponse)]
-    public partial class M2C_TestResponse : MessageObject, IResponse
-    {
-        public static M2C_TestResponse Create(bool isFromPool = false)
-        {
-            return ObjectPool.Fetch<M2C_TestResponse>(isFromPool);
-        }
-
-        [MemoryPackOrder(0)]
-        public int RpcId { get; set; }
-
-        [MemoryPackOrder(1)]
-        public int Error { get; set; }
-
-        [MemoryPackOrder(2)]
-        public string Message { get; set; }
-
-        [MemoryPackOrder(3)]
-        public string response { get; set; }
-
-        public override void Dispose()
-        {
-            if (!this.IsFromPool)
-            {
-                return;
-            }
-
-            this.RpcId = default;
-            this.Error = default;
-            this.Message = default;
-            this.response = default;
-
-            ObjectPool.Recycle(this);
-        }
-    }
-
+    // message C2M_TestRequest // ILocationRequest
+    // {
+    //     int32 RpcId = 1;
+    //     string request = 2;
+    // }
+    // message M2C_TestResponse // IResponse
+    // {
+    //     int32 RpcId = 1;
+    //     int32 Error = 2;
+    //     string Message = 3;
+    //     string response = 4;
+    // }
     [MemoryPackable]
     [Message(StateSyncOuter.C2G_EnterMap)]
     [ResponseType(nameof(G2C_EnterMap))]
@@ -165,39 +110,12 @@ namespace ET
         }
     }
 
-    [MemoryPackable]
-    [Message(StateSyncOuter.MoveInfo)]
-    public partial class MoveInfo : MessageObject
-    {
-        public static MoveInfo Create(bool isFromPool = false)
-        {
-            return ObjectPool.Fetch<MoveInfo>(isFromPool);
-        }
-
-        [MemoryPackOrder(0)]
-        public List<Unity.Mathematics.float3> Points { get; set; } = new();
-
-        [MemoryPackOrder(1)]
-        public Unity.Mathematics.quaternion Rotation { get; set; }
-
-        [MemoryPackOrder(2)]
-        public int TurnSpeed { get; set; }
-
-        public override void Dispose()
-        {
-            if (!this.IsFromPool)
-            {
-                return;
-            }
-
-            this.Points.Clear();
-            this.Rotation = default;
-            this.TurnSpeed = default;
-
-            ObjectPool.Recycle(this);
-        }
-    }
-
+    // message MoveInfo
+    // {
+    //     repeated Unity.Mathematics.float3 Points = 1;
+    //     Unity.Mathematics.quaternion Rotation = 2;
+    //     int32 TurnSpeed = 3;
+    // }
     [MemoryPackable]
     [Message(StateSyncOuter.UnitInfo)]
     public partial class UnitInfo : MessageObject
@@ -216,18 +134,18 @@ namespace ET
         [MemoryPackOrder(2)]
         public int Type { get; set; }
 
-        [MemoryPackOrder(3)]
-        public Unity.Mathematics.float3 Position { get; set; }
-
-        [MemoryPackOrder(4)]
-        public Unity.Mathematics.float3 Forward { get; set; }
-
+        /// <summary>
+        /// Unity.Mathematics.float3 Position = 4;
+        /// </summary>
+        /// <summary>
+        /// Unity.Mathematics.float3 Forward = 5;
+        /// </summary>
         [MongoDB.Bson.Serialization.Attributes.BsonDictionaryOptions(MongoDB.Bson.Serialization.Options.DictionaryRepresentation.ArrayOfArrays)]
         [MemoryPackOrder(5)]
         public Dictionary<int, long> KV { get; set; } = new();
-        [MemoryPackOrder(6)]
-        public MoveInfo MoveInfo { get; set; }
-
+        /// <summary>
+        /// MoveInfo MoveInfo = 7;
+        /// </summary>
         public override void Dispose()
         {
             if (!this.IsFromPool)
@@ -238,10 +156,7 @@ namespace ET
             this.UnitId = default;
             this.ConfigId = default;
             this.Type = default;
-            this.Position = default;
-            this.Forward = default;
             this.KV.Clear();
-            this.MoveInfo = default;
 
             ObjectPool.Recycle(this);
         }
@@ -351,27 +266,9 @@ namespace ET
         }
     }
 
-    [MemoryPackable]
-    [Message(StateSyncOuter.G2C_Test)]
-    public partial class G2C_Test : MessageObject, ISessionMessage
-    {
-        public static G2C_Test Create(bool isFromPool = false)
-        {
-            return ObjectPool.Fetch<G2C_Test>(isFromPool);
-        }
-
-        public override void Dispose()
-        {
-            if (!this.IsFromPool)
-            {
-                return;
-            }
-
-            
-            ObjectPool.Recycle(this);
-        }
-    }
-
+    // message G2C_Test // ISessionMessage
+    // {
+    // }
     [MemoryPackable]
     [Message(StateSyncOuter.C2M_Reload)]
     [ResponseType(nameof(M2C_Reload))]
@@ -439,31 +336,10 @@ namespace ET
         }
     }
 
-    [MemoryPackable]
-    [Message(StateSyncOuter.G2C_TestHotfixMessage)]
-    public partial class G2C_TestHotfixMessage : MessageObject, ISessionMessage
-    {
-        public static G2C_TestHotfixMessage Create(bool isFromPool = false)
-        {
-            return ObjectPool.Fetch<G2C_TestHotfixMessage>(isFromPool);
-        }
-
-        [MemoryPackOrder(0)]
-        public string Info { get; set; }
-
-        public override void Dispose()
-        {
-            if (!this.IsFromPool)
-            {
-                return;
-            }
-
-            this.Info = default;
-
-            ObjectPool.Recycle(this);
-        }
-    }
-
+    // message G2C_TestHotfixMessage // ISessionMessage
+    // {
+    //     string Info = 1;
+    // }
     [MemoryPackable]
     [Message(StateSyncOuter.C2M_TestRobotCase)]
     [ResponseType(nameof(M2C_TestRobotCase))]
@@ -710,27 +586,22 @@ namespace ET
     public static class StateSyncOuter
     {
         public const ushort RouterSync = 11002;
-        public const ushort C2M_TestRequest = 11003;
-        public const ushort M2C_TestResponse = 11004;
-        public const ushort C2G_EnterMap = 11005;
-        public const ushort G2C_EnterMap = 11006;
-        public const ushort MoveInfo = 11007;
-        public const ushort UnitInfo = 11008;
-        public const ushort M2C_CreateUnits = 11009;
-        public const ushort M2C_CreateMyUnit = 11010;
-        public const ushort M2C_StartSceneChange = 11011;
-        public const ushort M2C_RemoveUnits = 11012;
-        public const ushort G2C_Test = 11013;
-        public const ushort C2M_Reload = 11014;
-        public const ushort M2C_Reload = 11015;
-        public const ushort G2C_TestHotfixMessage = 11016;
-        public const ushort C2M_TestRobotCase = 11017;
-        public const ushort M2C_TestRobotCase = 11018;
-        public const ushort C2M_TestRobotCase2 = 11019;
-        public const ushort M2C_TestRobotCase2 = 11020;
-        public const ushort C2M_TransferMap = 11021;
-        public const ushort M2C_TransferMap = 11022;
-        public const ushort C2G_Benchmark = 11023;
-        public const ushort G2C_Benchmark = 11024;
+        public const ushort C2G_EnterMap = 11003;
+        public const ushort G2C_EnterMap = 11004;
+        public const ushort UnitInfo = 11005;
+        public const ushort M2C_CreateUnits = 11006;
+        public const ushort M2C_CreateMyUnit = 11007;
+        public const ushort M2C_StartSceneChange = 11008;
+        public const ushort M2C_RemoveUnits = 11009;
+        public const ushort C2M_Reload = 11010;
+        public const ushort M2C_Reload = 11011;
+        public const ushort C2M_TestRobotCase = 11012;
+        public const ushort M2C_TestRobotCase = 11013;
+        public const ushort C2M_TestRobotCase2 = 11014;
+        public const ushort M2C_TestRobotCase2 = 11015;
+        public const ushort C2M_TransferMap = 11016;
+        public const ushort M2C_TransferMap = 11017;
+        public const ushort C2G_Benchmark = 11018;
+        public const ushort G2C_Benchmark = 11019;
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace ET.Client
 {
-    [Event(SceneType.StateSync)]
+    [Event(SceneType.ChildrenMgr)]
     public class SceneChangeStart_AddComponent: AEvent<Scene, SceneChangeStart>
     {
         protected override async ETTask Run(Scene root, SceneChangeStart args)
@@ -15,7 +15,7 @@ namespace ET.Client
                 ResourcesLoaderComponent resourcesLoaderComponent = currentScene.GetComponent<ResourcesLoaderComponent>();
             
                 // 加载场景资源
-                await resourcesLoaderComponent.LoadSceneAsync($"Packages/cn.etetet.demores/Scenes/{currentScene.Name}.unity", LoadSceneMode.Single);
+                await resourcesLoaderComponent.LoadSceneAsync($"Packages/cn.etetet.childrenmgr/Assets/GameRes/Scenes/{currentScene.Name}.unity", LoadSceneMode.Single);
                 // 切换到map场景
 
                 //await SceneManager.LoadSceneAsync(currentScene.Name);
