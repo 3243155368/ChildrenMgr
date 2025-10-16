@@ -1,20 +1,30 @@
 [
   {
     "Id": 1,
+    "ZoneType": 1,
     "DBConnection": "mongodb://127.0.0.1",
     "DBName": "ET1",
     "Desc": "游戏区"
   },
   {
     "Id": 2,
+    "ZoneType": 2,
     "DBConnection": "",
     "DBName": "",
     "Desc": "机器人区"
   },
   {
     "Id": 3,
+    "ZoneType": 3,
     "DBConnection": "",
     "DBName": "",
     "Desc": "路由区"
+  },
+  {
+    "Id": 1000,
+    "ZoneType": 4,
+    "DBConnection": "mongodb://127.0.0.1",
+    "DBName": "ET1000",
+    "Desc": "账号登陆服"
   }
 ]

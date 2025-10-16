@@ -1,0 +1,9 @@
+﻿{
+    "Id": 201,
+    "Name": "unitcache",
+    "ScriptsReferences": 
+    {
+        "Hotfix": ["ET.UnitCache"],
+        "Model": ["ET.UnitCache"]
+    }
+}

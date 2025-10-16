@@ -18,6 +18,7 @@ namespace ET
         public StartZoneConfig(ByteBuf _buf) 
         {
             Id = _buf.ReadInt();
+            ZoneType = _buf.ReadInt();
             DBConnection = _buf.ReadString();
             DBName = _buf.ReadString();
             Desc = _buf.ReadString();
@@ -34,6 +35,10 @@ namespace ET
         /// Id
         /// </summary>
         public readonly int Id;
+        /// <summary>
+        /// ZoneType
+        /// </summary>
+        public readonly int ZoneType;
         /// <summary>
         /// 数据库地址
         /// </summary>
@@ -59,6 +64,7 @@ namespace ET
         {
             return "{ "
             + "Id:" + Id + ","
+            + "ZoneType:" + ZoneType + ","
             + "DBConnection:" + DBConnection + ","
             + "DBName:" + DBName + ","
             + "Desc:" + Desc + ","
