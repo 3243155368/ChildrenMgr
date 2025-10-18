@@ -44,6 +44,7 @@ namespace ET.Client
             else
             {
                 session?.Dispose();
+                Log.Error("请求登录失败，返回错误" + r2CLogin.Error);
             }
 
             response.Token = r2CLogin.Token;

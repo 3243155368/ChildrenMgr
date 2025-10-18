@@ -17,8 +17,6 @@ namespace ET.Client
             Log.Debug("请求登录成功！！！");
             string Token = response.Token;
             
-            //root.GetComponent<PlayerComponent>().MyId = response.PlayerId;
-            
             //获取服务器列表
             C2R_GetServerInfos c2RGetServerInfos = C2R_GetServerInfos.Create();
             c2RGetServerInfos.Account = account;
@@ -69,7 +67,6 @@ namespace ET.Client
             {
                 roleInfoProto = r2CGetRoles.RoleInfo[0];
             }
-            
             //请求获取RealmKey
             C2R_GetRealmKey c2RGetRealmKey = C2R_GetRealmKey.Create();
             c2RGetRealmKey.Token = Token;

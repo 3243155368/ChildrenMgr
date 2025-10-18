@@ -42,7 +42,7 @@
   {
     "Id": 201,
     "Process": 1,
-    "Zone": 2,
+    "Zone": 1000,
     "SceneType": "Realm",
     "Name": "Realm",
     "Port": 20101
@@ -58,7 +58,7 @@
   {
     "Id": 301,
     "Process": 1,
-    "Zone": 3,
+    "Zone": 1,
     "SceneType": "Gate",
     "Name": "Gate1",
     "Port": 30101
@@ -66,7 +66,7 @@
   {
     "Id": 302,
     "Process": 1,
-    "Zone": 3,
+    "Zone": 1,
     "SceneType": "Gate",
     "Name": "Gate2",
     "Port": 30102
@@ -74,7 +74,7 @@
   {
     "Id": 303,
     "Process": 1,
-    "Zone": 3,
+    "Zone": 1,
     "SceneType": "Location",
     "Name": "Location",
     "Port": 0
@@ -82,7 +82,7 @@
   {
     "Id": 304,
     "Process": 1,
-    "Zone": 3,
+    "Zone": 1,
     "SceneType": "Map",
     "Name": "Map1",
     "Port": 0
@@ -90,7 +90,7 @@
   {
     "Id": 305,
     "Process": 1,
-    "Zone": 3,
+    "Zone": 1,
     "SceneType": "Map",
     "Name": "Map2",
     "Port": 0

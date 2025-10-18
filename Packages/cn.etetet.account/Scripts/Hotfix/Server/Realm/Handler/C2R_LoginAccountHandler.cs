@@ -25,19 +25,19 @@ namespace ET.Server
                 return;
             }
 
-            if (!Regex.IsMatch(request.AccountName.Trim(), @"^(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*).{6,15}$"))
-            {
-                response.Error = ErrorCode.ERR_AccountNameFormError;
-                session.Disconnect().NoContext();
-                return;
-            }
-
-            if (!Regex.IsMatch(request.Password.Trim(), @"^[A-Za-z0-9]+$"))
-            {
-                response.Error = ErrorCode.ERR_PasswordFormError;
-                session.Disconnect().NoContext();
-                return;
-            }
+            // if (!Regex.IsMatch(request.AccountName.Trim(), @"^(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*).{6,15}$"))
+            // {
+            //     response.Error = ErrorCode.ERR_AccountNameFormError;
+            //     session.Disconnect().NoContext();
+            //     return;
+            // }
+            //
+            // if (!Regex.IsMatch(request.Password.Trim(), @"^[A-Za-z0-9]+$"))
+            // {
+            //     response.Error = ErrorCode.ERR_PasswordFormError;
+            //     session.Disconnect().NoContext();
+            //     return;
+            // }
 
 
             CoroutineLockComponent coroutineLockComponent = session.Root().GetComponent<CoroutineLockComponent>();

@@ -68,6 +68,8 @@ namespace ET.Server
                 }
                 self.CacheComponentDic.Remove(entity.Id);
             }
+
+            self.AddChild(entity);
             self.CacheComponentDic.Add(entity.Id, entity);
         }
     }
