@@ -77,34 +77,30 @@ namespace ET.Server
 
         public static async ETTask AddOrUpData(this ET.Server.UnitCacheComponent self, long unitId, List<Entity> entityList)
         {
-            using (ListComponent<Entity> list = ListComponent<Entity>.Create())
+            using ListComponent<Entity> list = ListComponent<Entity>.Create();
+            self.CallCache(unitId);
+            foreach (Entity entity in entityList)
             {
-                self.CallCache(unitId);
-                foreach (Entity entity in entityList)
+                string key = entity.GetType().FullName;
+                UnitCache unitCache = null;
+                if (!self.UnitCaches.TryGetValue(key, out EntityRef<UnitCache> unitCacheRef))
                 {
-                    string key = entity.GetType().FullName;
-                    UnitCache unitCache = null;
-                    if (!self.UnitCaches.TryGetValue(key, out EntityRef<UnitCache> unitCacheRef))
-                    {
-                        unitCache = self.AddChild<UnitCache>();
-                        unitCache.key = key;
-                        self.UnitCaches.Add(key, unitCache);
-                    }
-                    else
-                    {
-                        unitCache = unitCacheRef;
-                    }
+                    unitCache = self.AddChild<UnitCache>();
+                    unitCache.key = key;
+                    self.UnitCaches.Add(key, unitCache);
+                }
+                else
+                {
+                    unitCache = unitCacheRef;
+                }
 
-                    unitCache.AddOrUpdate(entity);
-                    list.Add(entity);
-                    if (list.Count > 0)
-                    {
-                        await self.Root().GetComponent<DBManagerComponent>().GetZoneDB(self.Zone()).Save(unitId, list);
-                    }
+                unitCache.AddOrUpdate(entity);
+                list.Add(entity);
+                if (list.Count > 0)
+                {
+                    await self.Root().GetComponent<DBManagerComponent>().GetZoneDB(self.Zone()).Save(unitId, list);
                 }
             }
-
-            await ETTask.CompletedTask;
         }
     }
 }

@@ -20,13 +20,14 @@ namespace ET.Client
         {
         }
 
-        public static void ResetItem(this LobbyClassItemComponent self, SchoolGradeConfig data)
+        public static void ResetItem(this LobbyClassItemComponent self, SchoolGradeConfig data, bool hasData)
         {
-            self.u_ComClassTxTText.text = data.GradeName;
+            self.u_ComClassTxTText.text =  data.GradeName + (hasData ? "_有" : "");
         }
-        public static void ResetItem(this LobbyClassItemComponent self, GradeClassConfig data)
+
+        public static void ResetItem(this LobbyClassItemComponent self, GradeClassConfig data, bool hasData)
         {
-            self.u_ComClassTxTText.text = data.Grade;
+            self.u_ComClassTxTText.text = data.Grade + (hasData ? "_有" : "");
         }
 
         public static void SelectItem(this LobbyClassItemComponent self, bool value)
@@ -34,13 +35,13 @@ namespace ET.Client
             self.u_DataU_Select.SetValue(value);
         }
 
-        
         #region YIUIEvent开始
-        
+
         [YIUIInvoke(LobbyClassItemComponent.OnEventSelectInvoke)]
         private static void OnEventSelectInvoke(this LobbyClassItemComponent self)
         {
         }
+
         #endregion YIUIEvent结束
     }
 }

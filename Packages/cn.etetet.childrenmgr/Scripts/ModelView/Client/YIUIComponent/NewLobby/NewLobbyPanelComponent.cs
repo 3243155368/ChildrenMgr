@@ -1,7 +1,4 @@
-using System;
-using UnityEngine;
 using YIUIFramework;
-using System.Collections.Generic;
 
 namespace ET.Client
 {
@@ -10,10 +7,14 @@ namespace ET.Client
     /// Date    2025.9.19
     /// Desc
     /// </summary>
-    public partial class NewLobbyPanelComponent : Entity
+    public partial class NewLobbyPanelComponent : Entity, IYIUIOpen<int[]>, IYIUIOpen<int[], ParamVo>
     {
         public EntityRef<YIUILoopScrollChild> m_LoopScroll;
         public YIUILoopScrollChild LoopScroll => m_LoopScroll;
+        
+        public int[] HasDataGradeClassIds;
+        
+        public ParamVo ChooseGradeClassIdParamVo;
         
         public bool IsGradeClassSelect;
     }

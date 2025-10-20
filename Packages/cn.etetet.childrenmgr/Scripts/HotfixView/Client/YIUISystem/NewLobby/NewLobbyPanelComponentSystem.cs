@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ET.SchoolGrade;
 using UnityEngine.UI;
+using YIUIFramework;
 
 namespace ET.Client
 {
@@ -14,11 +16,32 @@ namespace ET.Client
     public static partial class NewLobbyPanelComponentSystem
     {
         [EntitySystem]
+        private static async ETTask<bool> YIUIOpen(this ET.Client.NewLobbyPanelComponent self, int[] param1, YIUIFramework.ParamVo param2)
+        {
+            self.ChooseGradeClassIdParamVo = param2;
+            self.HasDataGradeClassIds = param1;
+            await self.SetClassDataRefresh();
+            return true;
+        }
+        [EntitySystem]
+        private static async ETTask<bool> YIUIOpen(this ET.Client.NewLobbyPanelComponent self, int[] param1)
+        {
+            self.HasDataGradeClassIds = param1;
+            await self.SetClassDataRefresh();
+            return true;
+        }
+        [EntitySystem]
+        private static async ETTask<bool> YIUIOpen(this NewLobbyPanelComponent self)
+        {
+            await self.SetClassDataRefresh();
+            return true;
+        }
+        [EntitySystem]
         private static void YIUIInitialize(this NewLobbyPanelComponent self)
         {
             self.m_LoopScroll =
-                    self.AddChild<YIUILoopScrollChild, LoopScrollRect, Type,string>(self.u_ComLoopScrollVerticalLoopVerticalScrollRect,
-                        typeof(LobbyClassItemComponent),"u_EventSelect");
+                    self.AddChild<YIUILoopScrollChild, LoopScrollRect, Type, string>(self.u_ComLoopScrollVerticalLoopVerticalScrollRect,
+                        typeof(LobbyClassItemComponent), "u_EventSelect");
             self.IsGradeClassSelect = true;
         }
 
@@ -26,14 +49,8 @@ namespace ET.Client
         private static void Destroy(this NewLobbyPanelComponent self)
         {
         }
-
-        [EntitySystem]
-        private static async ETTask<bool> YIUIOpen(this NewLobbyPanelComponent self)
-        {
-            await self.SetClassDataRefresh();
-            return true;
-        }
-        private static async ETTask SetClassDataRefresh(this NewLobbyPanelComponent self,SchoolGradeConfig data = null)
+        
+        private static async ETTask SetClassDataRefresh(this NewLobbyPanelComponent self, SchoolGradeConfig data = null)
         {
             self.LoopScroll.ClearSelect();
             if (!self.IsGradeClassSelect)
@@ -47,33 +64,38 @@ namespace ET.Client
         }
 
         [EntitySystem]
-        private static void YIUILoopRenderer(this NewLobbyPanelComponent self, LobbyClassItemComponent item, SchoolGradeConfig data, int index, bool select)
+        private static void YIUILoopRenderer(this NewLobbyPanelComponent self, LobbyClassItemComponent item, SchoolGradeConfig data, int index,
+        bool select)
         {
-            item.ResetItem(data);
-            item.SelectItem(select);
-        }
-        [EntitySystem]
-        private static void YIUILoopRenderer(this NewLobbyPanelComponent self, LobbyClassItemComponent item, GradeClassConfig data, int index, bool select)
-        {
-            item.ResetItem(data);
+            bool hasData = self.HasDataGradeClassIds.Any(id => id / 1000 == data.Id / 1000);
+            item.ResetItem(data, hasData);
             item.SelectItem(select);
         }
 
         [EntitySystem]
-        private static void YIUILoopOnClick(this NewLobbyPanelComponent self, LobbyClassItemComponent item, SchoolGradeConfig data, int index, bool select)
+        private static void YIUILoopRenderer(this NewLobbyPanelComponent self, LobbyClassItemComponent item, GradeClassConfig data, int index,
+        bool select)
+        {
+            item.ResetItem(data, self.HasDataGradeClassIds.Contains(data.Id));
+            item.SelectItem(select);
+        }
+
+        [EntitySystem]
+        private static void YIUILoopOnClick(this NewLobbyPanelComponent self, LobbyClassItemComponent item, SchoolGradeConfig data, int index,
+        bool select)
         {
             item.SelectItem(select);
         }
-        
+
         [EntitySystem]
-        private static void YIUILoopOnClick(this NewLobbyPanelComponent self, LobbyClassItemComponent item, GradeClassConfig data, int index, bool select)
+        private static void YIUILoopOnClick(this NewLobbyPanelComponent self, LobbyClassItemComponent item, GradeClassConfig data, int index,
+        bool select)
         {
             item.SelectItem(select);
         }
 
         #region YIUIEvent开始
 
-        
         [YIUIInvoke(NewLobbyPanelComponent.OnEventReturnInvoke)]
         private static async ETTask OnEventReturnInvoke(this NewLobbyPanelComponent self)
         {
@@ -81,7 +103,7 @@ namespace ET.Client
             self.IsGradeClassSelect = !self.IsGradeClassSelect;
             await self.SetClassDataRefresh();
         }
-        
+
         [YIUIInvoke(NewLobbyPanelComponent.OnEventEnterInvoke)]
         private static async ETTask OnEventEnterInvoke(this NewLobbyPanelComponent self)
         {
@@ -93,20 +115,26 @@ namespace ET.Client
                     Log.Error("先选择年级");
                     return;
                 }
+
                 self.IsGradeClassSelect = false;
-                await self.SetClassDataRefresh(schoolGradeConfig); 
+                await self.SetClassDataRefresh(schoolGradeConfig);
                 return;
             }
+
             GradeClassConfig gradeClassConfig = self.LoopScroll.GetSelectData<GradeClassConfig>()[0];
             if (gradeClassConfig == null)
             {
                 Log.Error("请选择班级");
                 return;
             }
-            
-            await EnterMapHelper.EnterMapAsync(self.Root());
-            await self.UIPanel.CloseAsync();
+
+            int id = self.ChooseGradeClassIdParamVo.Get<int>();
+            ParamVo.Put(self.ChooseGradeClassIdParamVo);
+            id = gradeClassConfig.Id;
+            self.ChooseGradeClassIdParamVo = ParamVo.Get(id);
+            self.UIPanel.CloseAsync().NoContext();
         }
+
         #endregion YIUIEvent结束
     }
 }

@@ -17,6 +17,8 @@
         public int State;
 
         public string Account;
+        
+        public int GradeClassId;
 
         public long LastLoginTime;
 

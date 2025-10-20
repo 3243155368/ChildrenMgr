@@ -12,10 +12,11 @@ namespace ET.Server
         [EntitySystem]
         private static void Destroy(this ET.Server.UnitCache self)
         {
-            foreach (Entity entityRef in self.CacheComponentDic.Values)
+            foreach (EntityRef<Entity> entityRef in self.CacheComponentDic.Values)
             {
                 Entity entity = entityRef;
-                entity.Dispose();
+                //可能为空，所以进行判空
+                entity?.Dispose();
             }
 
             self.CacheComponentDic.Clear();

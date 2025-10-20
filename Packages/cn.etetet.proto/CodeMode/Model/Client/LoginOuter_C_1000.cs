@@ -665,6 +665,9 @@ namespace ET
         [MemoryPackOrder(6)]
         public int ServerId { get; set; }
 
+        [MemoryPackOrder(7)]
+        public int GradeId { get; set; }
+
         public override void Dispose()
         {
             if (!this.IsFromPool)
@@ -679,6 +682,7 @@ namespace ET
             this.LastLoginTime = default;
             this.CreateTime = default;
             this.ServerId = default;
+            this.GradeId = default;
 
             ObjectPool.Recycle(this);
         }
@@ -784,6 +788,9 @@ namespace ET
         [MemoryPackOrder(3)]
         public int ServerId { get; set; }
 
+        [MemoryPackOrder(4)]
+        public int GradeId { get; set; }
+
         public override void Dispose()
         {
             if (!this.IsFromPool)
@@ -796,6 +803,7 @@ namespace ET
             this.Account = default;
             this.Name = default;
             this.ServerId = default;
+            this.GradeId = default;
 
             ObjectPool.Recycle(this);
         }

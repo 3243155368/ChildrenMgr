@@ -19,11 +19,7 @@
     public struct AppStartInitFinish
     {
     }
-
-    public struct LoginFinish
-    {
-    }
-
+    
     public struct EnterMapFinish
     {
     }

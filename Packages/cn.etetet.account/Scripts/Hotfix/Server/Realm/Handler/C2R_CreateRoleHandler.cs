@@ -53,6 +53,7 @@ namespace ET.Server
                     newRoleInfo.State    = (int)RoleInfoState.Normal;
                     newRoleInfo.ServerId = request.ServerId;
                     newRoleInfo.Account  = request.Account;
+                    newRoleInfo.GradeClassId = request.GradeId;
                     newRoleInfo.CreateTime    = TimeInfo.Instance.ServerNow();
                     newRoleInfo.LastLoginTime = 0;
 

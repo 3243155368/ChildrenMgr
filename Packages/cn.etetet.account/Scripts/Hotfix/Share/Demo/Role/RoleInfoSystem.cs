@@ -15,6 +15,7 @@
             self.Name = roleInfoProto.Name;
             self.State = roleInfoProto.State;
             self.Account = roleInfoProto.Account;
+            self.GradeClassId = roleInfoProto.GradeId;
             self.CreateTime = roleInfoProto.CreateTime;
             self.ServerId = roleInfoProto.ServerId;
             self.LastLoginTime = roleInfoProto.LastLoginTime;
@@ -27,6 +28,7 @@
             roleInfoProto.Name = self.Name;
             roleInfoProto.State = self.State;
             roleInfoProto.Account = self.Account;
+            roleInfoProto.GradeId = self.GradeClassId;
             roleInfoProto.CreateTime = self.CreateTime;
             roleInfoProto.ServerId = self.ServerId;
             roleInfoProto.LastLoginTime = self.LastLoginTime;
