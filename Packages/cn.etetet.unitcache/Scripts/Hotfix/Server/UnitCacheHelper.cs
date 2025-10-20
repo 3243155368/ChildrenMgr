@@ -2,7 +2,6 @@ using System;
 
 namespace ET.Server
 {
-    [FriendOf(typeof(RoleInfo))]
     public static class UnitCacheHelper
     {
         public static async ETTask<Unit> GetUnitCache(Scene gateScene, Scene mapScene, long unitId)
