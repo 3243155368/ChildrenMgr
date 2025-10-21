@@ -1,0 +1,11 @@
+﻿{
+    "Id": 202,
+    "Name": "announcement",
+    "ScriptsReferences": 
+    {
+        "Hotfix": ["ET.Announcement"],
+        "HotfixView": ["ET.Announcement"],
+        "Model": ["ET.Announcement"],
+        "ModelView": ["ET.Announcement"]
+    }
+}

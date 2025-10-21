@@ -14,6 +14,12 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "cn.etetet.announcement": {
+      "version": "file:cn.etetet.announcement",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "cn.etetet.childrenmgr": {
       "version": "file:cn.etetet.childrenmgr",
       "depth": 0,
