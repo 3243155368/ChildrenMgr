@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 
-namespace ET;
-
-[ComponentOf(typeof(Unit))]
-public class AdminComponent : Entity, IAwake,ITransfer, IUnitCache
+namespace ET
 {
-    public Dictionary<long,EntityRef<Announcement>> Announcements;
+    [ComponentOf(typeof(Scene))]
+    public class AdminComponent : Entity, IAwake, ITransfer, IUnitCache
+    {
+        public Dictionary<int, List<EntityRef<Announcement>>> Announcements;
+    }
 }
