@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "cn.etetet.router": "3.0.0"
+        "cn.etetet.router": "3.0.1"
       }
     },
     "cn.etetet.actorlocation": {
@@ -37,7 +37,7 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "cn.etetet.core": "1.0.0"
+        "cn.etetet.core": "3.0.3"
       }
     },
     "cn.etetet.demores": {
@@ -143,7 +143,7 @@
         "cn.etetet.loader": "3.0.1",
         "cn.etetet.demores": "3.0.0",
         "cn.etetet.mathematics": "0.0.2",
-        "cn.etetet.router": "3.0.0",
+        "cn.etetet.router": "3.0.1",
         "cn.etetet.console": "3.0.0",
         "cn.etetet.unit": "3.0.0",
         "cn.etetet.http": "3.0.0",
@@ -159,7 +159,7 @@
         "cn.etetet.yooassets": "2.3.6",
         "cn.etetet.memorypack": "1.10.1",
         "cn.etetet.startconfig": "3.0.0",
-        "cn.etetet.db": "1.0.0",
+        "cn.etetet.db": "1.0.1",
         "cn.etetet.account": "0.0.1"
       }
     },
@@ -278,7 +278,7 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "cn.etetet.statesync": "3.0.12",
+        "cn.etetet.statesync": "3.0.13",
         "cn.etetet.packagemanager": "1.0.7",
         "cn.etetet.yiuiframework": "3.0.4",
         "cn.etetet.yiuiyooassets": "3.0.1",

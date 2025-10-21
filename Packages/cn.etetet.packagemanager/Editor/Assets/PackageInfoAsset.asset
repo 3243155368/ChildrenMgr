@@ -43,6 +43,8 @@ MonoBehaviour:
     Version: 
   - Name: cn.etetet.watcher
     Version: 3.0.0
+  - Name: cn.etetet.unitcache
+    Version: 
   - Name: cn.etetet.unit
     Version: 3.0.0
   - Name: cn.etetet.ui
@@ -69,8 +71,6 @@ MonoBehaviour:
     Version: 1.10.1
   - Name: cn.etetet.mathematics
     Version: 0.0.2
-  - Name: cn.etetet.login
-    Version: 3.0.0
   - Name: cn.etetet.loader
     Version: 3.0.1
   - Name: cn.etetet.hybridclr
@@ -81,6 +81,8 @@ MonoBehaviour:
     Version: 3.0.0
   - Name: cn.etetet.demores
     Version: 3.0.0
+  - Name: cn.etetet.db
+    Version: 1.0.0
   - Name: cn.etetet.core
     Version: 3.0.3
   - Name: cn.etetet.console
@@ -89,6 +91,8 @@ MonoBehaviour:
     Version: 
   - Name: cn.etetet.actorlocation
     Version: 3.0.0
+  - Name: cn.etetet.account
+    Version: 
   - Name: com.unity.modules.wind
     Version: 1.0.0
   - Name: com.unity.modules.video
@@ -167,6 +171,7 @@ MonoBehaviour:
     Version: 3.0.6
   - Name: cn.etetet.yiuiframework
     Version: 3.0.4
-  BanPackageInfo: []
-  LastUpdateTime: 1760450486
+  BanPackageInfo:
+  - cn.etetet.account
+  LastUpdateTime: 1761037296
   UpdateInterval: 3600

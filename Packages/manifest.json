@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "cn.etetet.router": "3.0.1",
     "cn.etetet.yiuiframework": "3.0.3",
     "cn.etetet.yiuiluban": "3.0.6",
     "cn.etetet.yiuistatesync": "3.0.2",

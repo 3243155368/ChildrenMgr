@@ -1,7 +1,7 @@
-{
+﻿{
   "name": "cn.etetet.db",
   "displayName": "ET.DB",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "unity": "2022.3",
   "description": "一个简单的mongodb封装",
   "author": {
@@ -14,7 +14,7 @@
   },
   "relatedPackages": {},
   "dependencies": {
-    "cn.etetet.core": "1.0.0"
+    "cn.etetet.core": "3.0.3"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@ET-Packages"

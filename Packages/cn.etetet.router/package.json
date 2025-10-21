@@ -1,7 +1,7 @@
-{
+﻿{
   "name": "cn.etetet.router",
   "displayName": "ET.Router",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "unity": "2022.3",
   "description": "et的软路由，可以防网络攻击",
   "author": {
@@ -16,5 +16,6 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@ET-Packages"
   },
-  "_fingerprint": "a92b2ceed901cc6fb0db3e739968e9fcbbe83d19"
+  "_fingerprint": "5229891bee2afc9527e6996ac59ede4f3f427ac4",
+  "dependencies": {}
 }
