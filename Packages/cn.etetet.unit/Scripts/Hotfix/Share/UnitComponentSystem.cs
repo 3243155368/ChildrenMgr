@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using System.Collections.Generic;
+
+namespace ET
 {
 	public static partial class UnitComponentSystem
 	{
@@ -16,6 +18,14 @@
 		{
 			Unit unit = self.GetChild<Unit>(id);
 			unit?.Dispose();
+		}
+		public static void GetAll(this UnitComponent self, List<Unit> units)
+		{
+			foreach (EntityRef<Unit> unitRef in self.Children.Values)
+			{
+				Unit unit = unitRef;
+				units.Add(unit);
+			}
 		}
 	}
 }

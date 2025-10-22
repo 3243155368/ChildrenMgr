@@ -102,5 +102,13 @@
     "SceneType": "UnitCache",
     "Name": "UnitCache",
     "Port": 0
+  },
+  {
+    "Id": 307,
+    "Process": 1,
+    "Zone": 4,
+    "SceneType": "Announcement",
+    "Name": "Announcement",
+    "Port": 0
   }
 ]

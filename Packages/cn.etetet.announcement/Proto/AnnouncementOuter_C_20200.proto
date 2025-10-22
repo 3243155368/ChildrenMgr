@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package ET;
+
+
+message  AnnouncementInfoProto
+{
+	int64 Id = 1;
+	
+	int32 GradeClassId = 3;
+
+	string Content = 2;
+
+	int64 PublishTime = 5;
+
+	int64 PublisherId = 6;
+}
+
+//ResponseType Announcement2C_GetAnnouncements
+message C2Announcement_GetAnnouncements // IAnnouncementInfoRequest
+{
+	int32  RpcId     = 90;
+	int32  GradeClassId  = 1;
+}
+
+
+message Announcement2C_GetAnnouncements // IAnnouncementInfoResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+
+	repeated AnnouncementInfoProto AnnouncementInfos = 1;
+}
+
+
+//ResponseType Announcement2C_CreateAnnouncement
+message C2Announcement_CreateAnnouncement // IAnnouncementInfoRequest
+{
+	int32 RpcId     = 90;
+
+	int32 GradeClassId   = 1;
+	string Content = 2;
+}
+
+
+message Announcement2C_CreateAnnouncement // IAnnouncementInfoResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+
+	int64 AnnouncementId = 1;
+}
+
+//重新编辑文本公告
+//ResponseType Announcement2C_EditAnnouncement
+message C2Announcement_EditAnnouncement // IAnnouncementInfoRequest
+{
+	int32 RpcId     = 90;
+
+	int32 AnnouncementId   = 1;
+	int32 GradeClassId   = 2;
+	string Content = 3;
+}
+
+message Announcement2C_EditAnnouncement // IAnnouncementInfoResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+
+	int64 AnnouncementId = 1;
+}
+
+
+message Announcement2C_BroadcastAnnouncement // IAnnouncementInfoMessage
+{
+	 int32  RpcId      = 90;
+
+     AnnouncementInfoProto AnnouncementInfos = 1;
+}

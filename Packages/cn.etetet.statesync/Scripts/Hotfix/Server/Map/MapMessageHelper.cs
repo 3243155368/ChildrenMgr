@@ -1,7 +1,4 @@
-﻿
-
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 
 namespace ET.Server
 {
@@ -19,6 +16,18 @@ namespace ET.Server
             M2C_RemoveUnits removeUnits = M2C_RemoveUnits.Create();
             removeUnits.Units.Add(sendUnit.Id);
             MapMessageHelper.SendToClient(unit, removeUnits);
+        }
+        //广播
+        public static void Broadcast(Scene root,IMessage message)
+        {
+            List<Unit> units = new List<Unit>();
+            root.GetComponent<UnitComponent>().GetAll(units);
+            // 网络底层做了优化，同一个消息不会多次序列化
+            MessageLocationSenderOneType oneTypeMessageLocationType = root.GetComponent<MessageLocationSenderComponent>().Get(LocationType.GateSession);
+            foreach (Unit u in units)
+            {
+                oneTypeMessageLocationType.Send(u.Id, message);
+            }
         }
         public static void SendToClient(Unit unit, IMessage message)
         {

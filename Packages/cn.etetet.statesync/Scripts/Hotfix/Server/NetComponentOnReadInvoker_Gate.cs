@@ -23,6 +23,30 @@ namespace ET.Server
                     MessageSessionDispatcher.Instance.Handle(session, message);
                     break;
                 }
+                #region 公告
+
+                case IAnnouncementInfoRequest announcementInfoRequest:
+                {
+                    ActorId actorId = StartSceneConfigCategory.Instance.GetBySceneName(session.Zone(), "Rank").ActorId;
+                    int rpcId = announcementInfoRequest.RpcId; // 这里要保存客户端的rpcId
+                    long instanceId = session.InstanceId;
+
+                    IResponse response = await root.GetComponent<MessageSender>().Call(actorId, announcementInfoRequest);
+                    response.RpcId = rpcId;
+
+                    if (session.InstanceId == instanceId)
+                    {
+                        session.Send(response);
+                    } 
+                    break;
+                }
+                case IAnnouncementInfoMessage actorRankInfoMessage:
+                {
+                    ActorId actorId = StartSceneConfigCategory.Instance.GetBySceneName(session.Zone(), "Announcement").ActorId;
+                    root.GetComponent<MessageSender>().Send(actorId, actorRankInfoMessage);
+                    break;
+                }
+                #endregion
                 case ILocationMessage actorLocationMessage:
                 {
                     long unitId = session.GetComponent<SessionPlayerComponent>().Player.Id;
@@ -51,7 +75,6 @@ namespace ET.Server
                 {
                     break;
                 }
-				
                 default:
                 {
                     throw new Exception($"not found handler: {message}");
