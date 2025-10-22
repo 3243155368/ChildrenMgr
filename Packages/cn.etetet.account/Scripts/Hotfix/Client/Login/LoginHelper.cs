@@ -52,11 +52,11 @@ namespace ET.Client
                 new ChooseGradeClassStart { RoleInfo = r2CGetRoles.RoleInfo , Account = account, Token = Token, ServerId = serverInfoProto.Id }).NoContext();
         }
 
-        public static async ETTask CreateRole(Scene root, string account, string token, int serverId, int gradeClassId, List<RoleInfoProto> roleInfo)
+        public static async ETTask CreateRole(Scene root, string account, string token, int serverId, int gradeClassId, List<RoleInfoProto> roleInfos)
         {
             ClientSenderComponent clientSenderComponent = root.GetComponent<ClientSenderComponent>();
             RoleInfoProto roleInfoProto = default;
-            roleInfoProto = roleInfo.FirstOrDefault(info => info.GradeId == gradeClassId);
+            roleInfoProto = roleInfos.FirstOrDefault(info => info.GradeId == gradeClassId);
             //无角色信息 则创建角色信息
             if (roleInfoProto == null)
             {
@@ -78,6 +78,11 @@ namespace ET.Client
                 roleInfoProto = r2CCreateRole.RoleInfo;
             }
 
+            ClientRoleInfoComponent clientRoleInfoComponent = root.GetComponent<ClientRoleInfoComponent>();
+            RoleInfo roleInfo = clientRoleInfoComponent.AddChildWithId<RoleInfo>(roleInfoProto.Id);
+            roleInfo.FromMessage(roleInfoProto);
+            clientRoleInfoComponent.RoleInfo = roleInfo;
+            
             await GetRealmKeyAndEnterMap(root, account, token, serverId, clientSenderComponent, roleInfoProto.Id);
         }
 

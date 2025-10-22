@@ -13,6 +13,7 @@ namespace ET.Client
             root.AddComponent<GlobalComponent>();
             root.AddComponent<ResourcesLoaderComponent>();
             root.AddComponent<PlayerComponent>();
+            root.AddComponent<ClientRoleInfoComponent>();
             root.AddComponent<CurrentScenesComponent>();
 
             var result = await root.AddComponent<YIUIMgrComponent>().Initialize();
