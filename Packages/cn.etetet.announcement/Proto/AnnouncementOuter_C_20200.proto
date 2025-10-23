@@ -6,7 +6,7 @@ package ET;
 message  AnnouncementInfoProto
 {
 	int64 Id = 1;
-	
+
 	int32 GradeClassId = 3;
 
 	string Content = 2;
@@ -14,6 +14,10 @@ message  AnnouncementInfoProto
 	int64 PublishTime = 5;
 
 	int64 PublisherId = 6;
+
+	int32 State = 7;
+
+	repeated int64 RedirectStudentIds = 8;
 }
 
 //ResponseType Announcement2C_GetAnnouncements
@@ -39,8 +43,9 @@ message C2Announcement_CreateAnnouncement // IAnnouncementInfoRequest
 {
 	int32 RpcId     = 90;
 
-	int32 GradeClassId   = 1;
-	string Content = 2;
+	int64 PublisherId = 1;
+	int32 GradeClassId   = 2;
+	string Content = 3;
 }
 
 
@@ -59,7 +64,7 @@ message C2Announcement_EditAnnouncement // IAnnouncementInfoRequest
 {
 	int32 RpcId     = 90;
 
-	int32 AnnouncementId   = 1;
+	int64 AnnouncementId   = 1;
 	int32 GradeClassId   = 2;
 	string Content = 3;
 }
@@ -73,6 +78,40 @@ message Announcement2C_EditAnnouncement // IAnnouncementInfoResponse
 	int64 AnnouncementId = 1;
 }
 
+
+//ResponseType Announcement2C_DeleteAnnouncement
+message C2Announcement_DeleteAnnouncement // IAnnouncementInfoRequest
+{
+	int32 RpcId     = 90;
+
+	int64 AnnouncementId   = 1;
+}
+
+message Announcement2C_DeleteAnnouncement // IAnnouncementInfoResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+
+	int64 AnnouncementId = 1;
+}
+
+//ResponseType Announcement2C_RedirectAnnouncement
+message C2Announcement_RedirectAnnouncement // IAnnouncementInfoRequest
+{
+	int32 RpcId     = 90;
+
+	int64 AnnouncementId   = 1;
+	int32 GradeClassId = 2;
+	int64 RedirectUserId = 3;
+}
+
+message Announcement2C_RedirectAnnouncement // IAnnouncementInfoResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+}
 
 message Announcement2C_BroadcastAnnouncement // IAnnouncementInfoMessage
 {

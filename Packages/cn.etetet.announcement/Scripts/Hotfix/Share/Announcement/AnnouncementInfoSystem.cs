@@ -15,6 +15,8 @@ namespace ET
             self.Content = announcementInfoProto.Content;
             self.PublisherId = announcementInfoProto.PublisherId;
             self.PublishTime = announcementInfoProto.PublishTime;
+            self.State = announcementInfoProto.State;
+            self.RedirectStudentIds = announcementInfoProto.RedirectStudentIds;
         }
 
         public static AnnouncementInfoProto ToMessage(this AnnouncementInfo self)
@@ -24,6 +26,8 @@ namespace ET
             announcementInfoProto.Content = self.Content;
             announcementInfoProto.PublisherId = self.PublisherId;
             announcementInfoProto.PublishTime = self.PublishTime;
+            announcementInfoProto.State = self.State;
+            announcementInfoProto.RedirectStudentIds = self.RedirectStudentIds;
             return announcementInfoProto;
         }
     }

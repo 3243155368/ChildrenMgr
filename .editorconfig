@@ -1,0 +1,39 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# 所有文件
+[*]
+charset = utf-8
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# C# 文件
+[*.cs]
+indent_style = space
+indent_size = 4
+
+# 禁用"未使用的参数"警告 (适用于ET框架的生命周期方法)
+dotnet_diagnostic.IDE0060.severity = none
+
+# 禁用"限定符冗余"警告
+dotnet_diagnostic.IDE0001.severity = none
+
+# 其他常见的ET框架相关警告配置
+# 禁用"可以简化的表达式"警告
+dotnet_diagnostic.IDE0090.severity = none
+
+# 禁用"可以使用var"警告
+csharp_style_var_for_built_in_types = false:none
+csharp_style_var_when_type_is_apparent = false:none
+csharp_style_var_elsewhere = false:none
+
+# JSON 文件
+[*.json]
+indent_size = 2
+
+# XML 文件 (Unity meta文件等)
+[*.{xml,asmdef,asmref}]
+indent_size = 2
+

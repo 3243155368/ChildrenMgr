@@ -27,6 +27,12 @@ namespace ET
         [MemoryPackOrder(5)]
         public long PublisherId { get; set; }
 
+        [MemoryPackOrder(6)]
+        public int State { get; set; }
+
+        [MemoryPackOrder(7)]
+        public List<long> RedirectStudentIds { get; set; } = new();
+
         public override void Dispose()
         {
             if (!this.IsFromPool)
@@ -39,6 +45,8 @@ namespace ET
             this.Content = default;
             this.PublishTime = default;
             this.PublisherId = default;
+            this.State = default;
+            this.RedirectStudentIds.Clear();
 
             ObjectPool.Recycle(this);
         }
@@ -125,9 +133,12 @@ namespace ET
         public int RpcId { get; set; }
 
         [MemoryPackOrder(0)]
-        public int GradeClassId { get; set; }
+        public long PublisherId { get; set; }
 
         [MemoryPackOrder(1)]
+        public int GradeClassId { get; set; }
+
+        [MemoryPackOrder(2)]
         public string Content { get; set; }
 
         public override void Dispose()
@@ -138,6 +149,7 @@ namespace ET
             }
 
             this.RpcId = default;
+            this.PublisherId = default;
             this.GradeClassId = default;
             this.Content = default;
 
@@ -197,7 +209,7 @@ namespace ET
         public int RpcId { get; set; }
 
         [MemoryPackOrder(0)]
-        public int AnnouncementId { get; set; }
+        public long AnnouncementId { get; set; }
 
         [MemoryPackOrder(1)]
         public int GradeClassId { get; set; }
@@ -259,6 +271,144 @@ namespace ET
     }
 
     [MemoryPackable]
+    [Message(AnnouncementOuter.C2Announcement_DeleteAnnouncement)]
+    [ResponseType(nameof(Announcement2C_DeleteAnnouncement))]
+    public partial class C2Announcement_DeleteAnnouncement : MessageObject, IAnnouncementInfoRequest
+    {
+        public static C2Announcement_DeleteAnnouncement Create(bool isFromPool = false)
+        {
+            return ObjectPool.Fetch<C2Announcement_DeleteAnnouncement>(isFromPool);
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(0)]
+        public long AnnouncementId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.AnnouncementId = default;
+
+            ObjectPool.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(AnnouncementOuter.Announcement2C_DeleteAnnouncement)]
+    public partial class Announcement2C_DeleteAnnouncement : MessageObject, IAnnouncementInfoResponse
+    {
+        public static Announcement2C_DeleteAnnouncement Create(bool isFromPool = false)
+        {
+            return ObjectPool.Fetch<Announcement2C_DeleteAnnouncement>(isFromPool);
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(90)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(91)]
+        public string Message { get; set; }
+
+        [MemoryPackOrder(0)]
+        public long AnnouncementId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+            this.AnnouncementId = default;
+
+            ObjectPool.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(AnnouncementOuter.C2Announcement_RedirectAnnouncement)]
+    [ResponseType(nameof(Announcement2C_RedirectAnnouncement))]
+    public partial class C2Announcement_RedirectAnnouncement : MessageObject, IAnnouncementInfoRequest
+    {
+        public static C2Announcement_RedirectAnnouncement Create(bool isFromPool = false)
+        {
+            return ObjectPool.Fetch<C2Announcement_RedirectAnnouncement>(isFromPool);
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(0)]
+        public long AnnouncementId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int GradeClassId { get; set; }
+
+        [MemoryPackOrder(2)]
+        public long RedirectUserId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.AnnouncementId = default;
+            this.GradeClassId = default;
+            this.RedirectUserId = default;
+
+            ObjectPool.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(AnnouncementOuter.Announcement2C_RedirectAnnouncement)]
+    public partial class Announcement2C_RedirectAnnouncement : MessageObject, IAnnouncementInfoResponse
+    {
+        public static Announcement2C_RedirectAnnouncement Create(bool isFromPool = false)
+        {
+            return ObjectPool.Fetch<Announcement2C_RedirectAnnouncement>(isFromPool);
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(90)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(91)]
+        public string Message { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+
+            ObjectPool.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
     [Message(AnnouncementOuter.Announcement2C_BroadcastAnnouncement)]
     public partial class Announcement2C_BroadcastAnnouncement : MessageObject, IAnnouncementInfoMessage
     {
@@ -296,6 +446,10 @@ namespace ET
         public const ushort Announcement2C_CreateAnnouncement = 20205;
         public const ushort C2Announcement_EditAnnouncement = 20206;
         public const ushort Announcement2C_EditAnnouncement = 20207;
-        public const ushort Announcement2C_BroadcastAnnouncement = 20208;
+        public const ushort C2Announcement_DeleteAnnouncement = 20208;
+        public const ushort Announcement2C_DeleteAnnouncement = 20209;
+        public const ushort C2Announcement_RedirectAnnouncement = 20210;
+        public const ushort Announcement2C_RedirectAnnouncement = 20211;
+        public const ushort Announcement2C_BroadcastAnnouncement = 20212;
     }
 }

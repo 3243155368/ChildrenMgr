@@ -1,0 +1,116 @@
+{
+    "folders": [
+        {
+            "name": "🎯 ChildrenMgr 项目根目录",
+            "path": "."
+        },
+        {
+            "name": "📦 核心包 (Core)",
+            "path": "Packages/cn.etetet.core"
+        },
+        {
+            "name": "📦 公告系统 (Announcement)",
+            "path": "Packages/cn.etetet.announcement"
+        },
+        {
+            "name": "📦 儿童管理 (ChildrenMgr)",
+            "path": "Packages/cn.etetet.childrenmgr"
+        },
+        {
+            "name": "📦 协议定义 (Proto)",
+            "path": "Packages/cn.etetet.proto"
+        },
+        {
+            "name": "📦 加载器 (Loader)",
+            "path": "Packages/cn.etetet.loader"
+        },
+        {
+            "name": "🎨 YIUI框架",
+            "path": "Packages/cn.etetet.yiuiframework"
+        },
+        {
+            "name": "📚 资源管理 (YooAssets)",
+            "path": "Packages/cn.etetet.yooassets"
+        },
+        {
+            "name": "🔧 源码生成器",
+            "path": "Packages/cn.etetet.sourcegenerator"
+        }
+    ],
+    "settings": {
+        // 解决方案配置
+        "dotnet.defaultSolution": "ET.sln",
+        
+        // 文件浏览器配置
+        "explorer.sortOrder": "type",
+        "explorer.fileNesting.enabled": true,
+        "explorer.fileNesting.patterns": {
+            "*.cs": "${capture}.*.cs, ${capture}.meta",
+            "*.csproj": "${capture}.csproj.user",
+            "*.sln": "${capture}.sln.DotSettings, ${capture}.sln.DotSettings.user",
+            "*.proto": "${capture}_*.cs"
+        },
+        
+        // 隐藏不必要的文件
+        "files.exclude": {
+            "**/Library": true,
+            "**/Temp": true,
+            "**/obj": true,
+            "**/.vs": true,
+            "**/Logs": true
+        },
+        
+        // 搜索排除
+        "search.exclude": {
+            "**/Library": true,
+            "**/Temp": true,
+            "**/obj": true,
+            "**/Bin": true,
+            "**/Logs": true,
+            "**/*.meta": true
+        },
+        
+        // C# 配置
+        "omnisharp.useModernNet": true,
+        "omnisharp.enableRoslynAnalyzers": true,
+        "omnisharp.enableEditorConfigSupport": true,
+        "omnisharp.enableImportCompletion": true,
+        
+        // 编辑器配置
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+        
+        // 文件关联
+        "files.associations": {
+            "*.proto": "proto3",
+            "*.mdc": "markdown",
+            "*.asmdef": "json"
+        },
+        
+        // Git 配置
+        "git.ignoreLimitWarning": true,
+        
+        // 终端配置
+        "terminal.integrated.defaultProfile.windows": "PowerShell",
+        
+        // 代码片段配置
+        "[csharp]": {
+            "editor.defaultFormatter": "ms-dotnettools.csharp",
+            "editor.tabSize": 4,
+            "editor.insertSpaces": true
+        }
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-dotnettools.csharp",
+            "ms-dotnettools.csdevkit",
+            "visualstudiotoolsforunity.vstuc",
+            "editorconfig.editorconfig",
+            "zxh404.vscode-proto3",
+            "eamodio.gitlens"
+        ]
+    }
+}
+

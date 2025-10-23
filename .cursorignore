@@ -1,0 +1,26 @@
+# Unity meta文件
+**/*.meta
+
+# Unity Library目录
+Library/
+
+# Unity临时目录
+Temp/
+Logs/
+
+# 构建输出
+obj/
+bin/
+Bin/
+
+# IDE配置
+.vs/
+.idea/
+.vscode/
+
+# 其他生成文件
+*.csproj
+*.sln
+*.user
+*.vsconfig
+
