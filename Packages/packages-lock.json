@@ -20,6 +20,12 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "cn.etetet.childrenadmin": {
+      "version": "file:cn.etetet.childrenadmin",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "cn.etetet.childrenmgr": {
       "version": "file:cn.etetet.childrenmgr",
       "depth": 0,

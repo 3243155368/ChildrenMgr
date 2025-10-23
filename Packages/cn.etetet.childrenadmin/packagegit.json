@@ -1,0 +1,36 @@
+﻿{
+    "Id": 203,
+    "Name": "ChildrenAdmin",
+    "ScriptsReferences":
+    {
+        "Model": [
+            "ET.Core",
+            "Unity.Mathematics",
+            "ET.MemoryPack"
+        ],
+        "Hotfix": [
+            "ET.Core",
+            "Unity.Mathematics",
+            "ET.Loader",
+            "ET.MemoryPack",
+            "ET.Model"
+        ],
+        "ModelView": [
+            "ET.Core",
+            "Unity.Mathematics",
+            "ET.Loader",
+            "ET.Model",
+            "ET.UI"
+        ],
+        "HotfixView": [
+            "ET.Core",
+            "Unity.Mathematics",
+            "ET.Loader",
+            "ET.MemoryPack",
+            "ET.Model",
+            "ET.Hotfix",
+            "ET.ModelView",
+            "ET.UI"
+        ]
+    }
+}
