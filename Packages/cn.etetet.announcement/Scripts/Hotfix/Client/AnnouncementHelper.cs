@@ -1,32 +1,18 @@
 namespace ET.Client
 {
-    public static class AnnouncementHelper
-{
-    public static async ETTask GetAnnouncements(Unit unit)
-    {
-        ClientAnnouncementComponent announcementComponent = unit.GetComponent<ClientAnnouncementComponent>();
-        await announcementComponent.GetAnnouncements();
-    }
-
-    public static async ETTask SendAnnouncement(Unit unit, string content)
-    {
-        ClientAnnouncementComponent announcementComponent = unit.GetComponent<ClientAnnouncementComponent>();
-        await announcementComponent.SendAnnouncement(content);
-    }
-
-    public static async ETTask EditAnnouncement(Unit unit, string content, long announcementId)
-    {
-        ClientAnnouncementComponent announcementComponent = unit.GetComponent<ClientAnnouncementComponent>();
-        await announcementComponent.EditAnnouncement(content, announcementId);
-    }
-
     /// <summary>
-    /// （通过事件系统调用权限检查）
+    /// 公告客户端辅助类
+    /// 提供便捷的公告操作接口
     /// </summary>
-    public static bool CheckAnnouncementPermission(Unit unit)
+    public static class AnnouncementHelper
     {
-        bool canSend = EventSystem.Instance.Invoke<CheckAnnouncementPermission, bool>(new CheckAnnouncementPermission { Unit = unit });
-        return canSend;
-    }
+        /// <summary>
+        /// 检查公告权限（通过事件系统调用权限检查）
+        /// </summary>
+        public static bool CheckAnnouncementPermission(Unit unit)
+        {
+            bool canSend = EventSystem.Instance.Invoke<CheckAnnouncementPermission, bool>(new CheckAnnouncementPermission { Unit = unit });
+            return canSend;
+        }
     }
 }

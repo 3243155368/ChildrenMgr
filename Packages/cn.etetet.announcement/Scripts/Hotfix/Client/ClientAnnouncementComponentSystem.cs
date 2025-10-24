@@ -15,6 +15,17 @@ namespace ET.Client
         private static void Destroy(this ClientAnnouncementComponent self)
         {
         }
+
+        /// <summary>
+        /// 检查公告权限（通过事件系统调用权限检查）
+        /// </summary>
+        public static bool CheckAnnouncementPermission(this ClientAnnouncementComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+            bool canSend = EventSystem.Instance.Invoke<CheckAnnouncementPermission, bool>(new CheckAnnouncementPermission { Unit = unit });
+            return canSend;
+        }
+
         public static async ETTask GetAnnouncements(this ClientAnnouncementComponent self)
         {
             self.AnnouncementInfoList = new List<EntityRef<AnnouncementInfo>>();
@@ -31,7 +42,7 @@ namespace ET.Client
 
         public static async ETTask SendAnnouncement(this ClientAnnouncementComponent self, string content)
         {
-            if (!AnnouncementHelper.CheckAnnouncementPermission(self.GetParent<Unit>()))
+            if (!self.CheckAnnouncementPermission())
             {
                 return;
             }
@@ -45,7 +56,7 @@ namespace ET.Client
 
         public static async ETTask EditAnnouncement(this ClientAnnouncementComponent self, string content,long announcementId)
         {
-            if (!AnnouncementHelper.CheckAnnouncementPermission(self.GetParent<Unit>()))
+            if (!self.CheckAnnouncementPermission())
             {
                 return;
             }
@@ -59,7 +70,7 @@ namespace ET.Client
 
         public static async ETTask DeleteAnnouncement(this ClientAnnouncementComponent self, long announcementId)
         {
-            if (!AnnouncementHelper.CheckAnnouncementPermission(self.GetParent<Unit>()))
+            if (!self.CheckAnnouncementPermission())
             {
                 return;
             }
