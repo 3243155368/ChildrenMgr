@@ -65,8 +65,9 @@ message C2Announcement_EditAnnouncement // IAnnouncementInfoRequest
 	int32 RpcId     = 90;
 
 	int64 AnnouncementId   = 1;
-	int32 GradeClassId   = 2;
-	string Content = 3;
+	int64 PublisherId   = 2;
+	int32 GradeClassId   = 3;
+	string Content = 4;
 }
 
 message Announcement2C_EditAnnouncement // IAnnouncementInfoResponse
@@ -85,6 +86,7 @@ message C2Announcement_DeleteAnnouncement // IAnnouncementInfoRequest
 	int32 RpcId     = 90;
 
 	int64 AnnouncementId   = 1;
+	int64 PublisherId   = 2;
 }
 
 message Announcement2C_DeleteAnnouncement // IAnnouncementInfoResponse

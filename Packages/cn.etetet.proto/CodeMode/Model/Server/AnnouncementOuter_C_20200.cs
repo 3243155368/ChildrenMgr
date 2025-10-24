@@ -212,9 +212,12 @@ namespace ET
         public long AnnouncementId { get; set; }
 
         [MemoryPackOrder(1)]
-        public int GradeClassId { get; set; }
+        public long PublisherId { get; set; }
 
         [MemoryPackOrder(2)]
+        public int GradeClassId { get; set; }
+
+        [MemoryPackOrder(3)]
         public string Content { get; set; }
 
         public override void Dispose()
@@ -226,6 +229,7 @@ namespace ET
 
             this.RpcId = default;
             this.AnnouncementId = default;
+            this.PublisherId = default;
             this.GradeClassId = default;
             this.Content = default;
 
@@ -286,6 +290,9 @@ namespace ET
         [MemoryPackOrder(0)]
         public long AnnouncementId { get; set; }
 
+        [MemoryPackOrder(1)]
+        public long PublisherId { get; set; }
+
         public override void Dispose()
         {
             if (!this.IsFromPool)
@@ -295,6 +302,7 @@ namespace ET
 
             this.RpcId = default;
             this.AnnouncementId = default;
+            this.PublisherId = default;
 
             ObjectPool.Recycle(this);
         }

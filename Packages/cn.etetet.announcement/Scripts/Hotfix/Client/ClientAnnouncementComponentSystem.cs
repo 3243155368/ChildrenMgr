@@ -4,7 +4,6 @@ namespace ET.Client
 {
     [EntitySystemOf(typeof(ClientAnnouncementComponent))]
     [FriendOf(typeof(ClientAnnouncementComponent))]
-    [FriendOf(typeof(RoleInfo))]
     public static partial class ClientAnnouncementComponentSystem
     {
         [EntitySystem]
@@ -20,7 +19,7 @@ namespace ET.Client
         {
             self.AnnouncementInfoList = new List<EntityRef<AnnouncementInfo>>();
             C2Announcement_GetAnnouncements msg = C2Announcement_GetAnnouncements.Create();
-            msg.GradeClassId = self.Root().GetComponent<ClientRoleInfoComponent>().RoleInfo.GradeClassId;
+            msg.GradeClassId = self.Root().GetComponent<ClientRoleInfoComponent>().GetGradeClassId();
             Announcement2C_GetAnnouncements getAnnouncements =
                     await self.Root().GetComponent<ClientSenderComponent>().Call(msg) as Announcement2C_GetAnnouncements;
             foreach (var infoProto in getAnnouncements.AnnouncementInfos)
@@ -32,26 +31,38 @@ namespace ET.Client
 
         public static async ETTask SendAnnouncement(this ClientAnnouncementComponent self, string content)
         {
+            if (!AnnouncementHelper.CheckAnnouncementPermission(self.GetParent<Unit>()))
+            {
+                return;
+            }
             C2Announcement_CreateAnnouncement msg = C2Announcement_CreateAnnouncement.Create();
             msg.Content = content;
             msg.PublisherId = self.Root().GetComponent<PlayerComponent>().MyId;
-            msg.GradeClassId = self.Root().GetComponent<ClientRoleInfoComponent>().RoleInfo.GradeClassId;
+            msg.GradeClassId = self.Root().GetComponent<ClientRoleInfoComponent>().GetGradeClassId();
             Announcement2C_CreateAnnouncement createAnnouncement =
                     await self.Root().GetComponent<ClientSenderComponent>().Call(msg) as Announcement2C_CreateAnnouncement;
         }
 
         public static async ETTask EditAnnouncement(this ClientAnnouncementComponent self, string content,long announcementId)
         {
+            if (!AnnouncementHelper.CheckAnnouncementPermission(self.GetParent<Unit>()))
+            {
+                return;
+            }
             C2Announcement_EditAnnouncement msg = C2Announcement_EditAnnouncement.Create();
             msg.Content = content;
             msg.AnnouncementId = announcementId;
-            msg.GradeClassId = self.Root().GetComponent<ClientRoleInfoComponent>().RoleInfo.GradeClassId;
+            msg.GradeClassId = self.Root().GetComponent<ClientRoleInfoComponent>().GetGradeClassId();
             Announcement2C_EditAnnouncement editAnnouncement =
                     await self.Root().GetComponent<ClientSenderComponent>().Call(msg) as Announcement2C_EditAnnouncement;
         }
 
         public static async ETTask DeleteAnnouncement(this ClientAnnouncementComponent self, long announcementId)
         {
+            if (!AnnouncementHelper.CheckAnnouncementPermission(self.GetParent<Unit>()))
+            {
+                return;
+            }
             C2Announcement_DeleteAnnouncement msg = C2Announcement_DeleteAnnouncement.Create();
             msg.AnnouncementId = announcementId;
             Announcement2C_DeleteAnnouncement deleteAnnouncement =
@@ -68,7 +79,7 @@ namespace ET.Client
             C2Announcement_RedirectAnnouncement msg = C2Announcement_RedirectAnnouncement.Create();
             msg.AnnouncementId = announcementId;
             msg.RedirectUserId = self.Root().GetComponent<PlayerComponent>().MyId;
-            msg.GradeClassId = self.Root().GetComponent<ClientRoleInfoComponent>().RoleInfo.GradeClassId;
+            msg.GradeClassId = self.Root().GetComponent<ClientRoleInfoComponent>().GetGradeClassId();
             Announcement2C_RedirectAnnouncement redirectAnnouncement =
                     await self.Root().GetComponent<ClientSenderComponent>().Call(msg) as Announcement2C_RedirectAnnouncement;
         }

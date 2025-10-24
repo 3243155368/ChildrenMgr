@@ -1,7 +1,7 @@
 namespace ET.Client
 {
     [ComponentOf(typeof(Scene))]
-    public class ClientRoleInfoComponent : Entity, IAwake
+    public class ClientRoleInfoComponent : Entity, IAwake,IDestroy
     {
         private EntityRef<RoleInfo> RoleInfoRef;
 

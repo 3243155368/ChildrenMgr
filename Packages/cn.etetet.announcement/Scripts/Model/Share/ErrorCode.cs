@@ -27,6 +27,11 @@ namespace ET
         /// 公告内容为空
         /// </summary>
         public const int ERR_AnnouncementContentEmpty = ERR_WithoutException + PackageType.Announcement * 1000 + 4;
+
+        /// <summary>
+        /// 未找到操作者
+        /// </summary>
+        public const int ERR_NotFoundOperator = ERR_WithoutException + PackageType.Announcement * 1000 + 5;
     }
 }
 

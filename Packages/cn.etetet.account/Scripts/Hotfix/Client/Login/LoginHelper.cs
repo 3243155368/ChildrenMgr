@@ -79,10 +79,8 @@ namespace ET.Client
             }
 
             ClientRoleInfoComponent clientRoleInfoComponent = root.GetComponent<ClientRoleInfoComponent>();
-            RoleInfo roleInfo = clientRoleInfoComponent.AddChildWithId<RoleInfo>(roleInfoProto.Id);
-            roleInfo.FromMessage(roleInfoProto);
-            clientRoleInfoComponent.RoleInfo = roleInfo;
-            
+            clientRoleInfoComponent.SetRoleInfoFromProto(roleInfoProto);
+
             await GetRealmKeyAndEnterMap(root, account, token, serverId, clientSenderComponent, roleInfoProto.Id);
         }
 

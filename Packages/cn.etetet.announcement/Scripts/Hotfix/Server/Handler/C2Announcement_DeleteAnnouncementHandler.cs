@@ -9,10 +9,26 @@ namespace ET.Server
     {
         protected override async ETTask Run(Scene root, C2Announcement_DeleteAnnouncement request, Announcement2C_DeleteAnnouncement response)
         {
+            // 获取操作者Unit
+            Unit operatorUnit = root.GetComponent<UnitComponent>()?.Get(request.PublisherId);
+            if (operatorUnit == null)
+            {
+                response.Error = ErrorCode.ERR_NotFoundOperator;
+                response.Message = "未找到操作者";
+                return;
+            }
+
+            // 检查权限
+            if (!AnnouncementPermissionHelper.CheckAnnouncementPermission(operatorUnit))
+            {
+                response.Error = ErrorCode.ERR_AnnouncementNoPermission;
+                response.Message = "您没有删除公告的权限";
+                return;
+            }
+
             AnnouncementComponent announcementComponent = root.GetComponent<AnnouncementComponent>();
 
-            // 需要从请求中获取GradeClassId，这里需要根据AnnouncementId查找
-            // 简化处理：遍历所有班级查找该公告
+            // 遍历所有班级查找该公告并删除
             bool success = false;
             foreach (var kvp in announcementComponent.AnnouncementInfoDic)
             {

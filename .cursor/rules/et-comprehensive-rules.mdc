@@ -1,6 +1,6 @@
 ---
-description: 
-globs: 
+description:
+globs:
 alwaysApply: true
 ---
 # ET框架完整开发规范 - AI开发助手
@@ -13,7 +13,7 @@ alwaysApply: true
 
 ### Entity-Component-System (ECS) 架构
 - **Entity**：只包含数据，不包含方法
-- **System**：只包含逻辑，不包含数据  
+- **System**：只包含逻辑，不包含数据
 - **Component**：Entity的组成部分，遵循组合优于继承
 - **分离原则**：严格分离数据定义和业务逻辑
 
@@ -32,7 +32,7 @@ alwaysApply: true
 - **内容**：Entity定义、配置数据、共享逻辑
 - **特点**：不可热更新，稳定性高
 
-#### 2. ModelView 程序集 (`Scripts/ModelView/`)  
+#### 2. ModelView 程序集 (`Scripts/ModelView/`)
 - **用途**：客户端专用的视图模型层
 - **内容**：UI相关Entity、客户端专用组件
 - **特点**：不可热更新，UI底层支持
@@ -75,6 +75,26 @@ namespace ET  // 或 ET.Client, ET.Server
 - **严禁**在Entity类中定义任何方法
 - **必须**添加 `[ComponentOf]` 或 `[ChildOf]` 特性指定父级约束
 
+### ⚠️ ComponentOf 约束规则（重要）
+```csharp
+// 组件只能从其 ComponentOf 标记的父实体类型上获取
+[ComponentOf(typeof(Scene))]
+public class SceneComponent : Entity { }
+// ✅ 正确：scene.GetComponent<SceneComponent>()
+// ❌ 错误：unit.GetComponent<SceneComponent>()
+
+[ComponentOf(typeof(Unit))]
+public class UnitComponent : Entity { }
+// ✅ 正确：unit.GetComponent<UnitComponent>()
+// ❌ 错误：scene.GetComponent<UnitComponent>()
+```
+
+**关键规则**：
+1. 组件的 `[ComponentOf(typeof(X))]` 标记决定了该组件只能挂载在 `X` 类型的实体上
+2. 获取组件时必须从正确的父实体类型调用 `GetComponent<T>()`
+3. 违反此规则会导致运行时错误："组件类型: XXX 不允许作为实体: YYY 的组件类型"
+4. 编写代码时，必须先查看组件的 `ComponentOf` 标记，确定从哪个实体类型获取
+
 ### 生命周期接口规范
 ```csharp
 // 基础生命周期
@@ -104,7 +124,7 @@ public class ProcessRegistryComponent : Entity, IAwake
     /// 进程字典，使用EntityRef管理ProcessInfo引用
     /// </summary>
     public Dictionary<int, EntityRef<ProcessInfo>> ProcessDict { get; set; }
-    
+
     /// <summary>
     /// 机器进程映射，使用EntityRef列表
     /// </summary>
@@ -117,7 +137,7 @@ public static ProcessInfo RegisterProcess(this ProcessRegistryComponent self, Pr
 {
     // 存储到字典中
     self.ProcessDict[processInfo.ProcessId] = process;
-    
+
     return processInfo;
 }
 
@@ -133,7 +153,7 @@ public static ProcessInfo GetProcess(this ProcessRegistryComponent self, int pro
 public static List<ProcessInfo> GetAllValidProcesses(this ProcessRegistryComponent self)
 {
     var validProcesses = new List<ProcessInfo>();
-    
+
     // ✅ 正确：会自动转成ProcessInfo
     foreach (ProcessInfo processInfo in self.ProcessDict.Values)
     {
@@ -142,7 +162,7 @@ public static List<ProcessInfo> GetAllValidProcesses(this ProcessRegistryCompone
             validProcesses.Add(processInfo);
         }
     }
-    
+
     return validProcesses;
 }
 
@@ -150,7 +170,7 @@ public static List<ProcessInfo> GetAllValidProcesses(this ProcessRegistryCompone
 public static void CleanupInvalidReferences(this ProcessRegistryComponent self)
 {
     var invalidIds = new List<int>();
-    
+
     foreach (var kvp in self.ProcessDict)
     {
         // ✅ 正确：直接赋值取出Entity对象，然后检查有效性
@@ -160,7 +180,7 @@ public static void CleanupInvalidReferences(this ProcessRegistryComponent self)
             invalidIds.Add(kvp.Key);
         }
     }
-    
+
     foreach (var id in invalidIds)
     {
         self.ProcessDict.Remove(id);
@@ -207,27 +227,27 @@ public static async ETTask ProcessUpdate(this UpdateCoordinatorComponent self, U
     EntityRef<UpdateTask> taskRef = task;
     var processRegistry = self.Root().GetComponent<ProcessRegistryComponent>();
     EntityRef<ProcessRegistryComponent> processRegistryRef = processRegistry;
-    
+
     foreach (int processId in task.TargetProcessIds)
     {
         // 2. 在每次使用Entity前通过EntityRef重新获取
         task = taskRef;
         task.UpdateProcessProgress(processId, UpdateStep.Updating, UpdateStepStatus.Running);
-        
+
         try
         {
             // 3. 在使用其他Entity前也要重新获取
             processRegistry = processRegistryRef;
             var processInfo = processRegistry.GetProcess(processId);
-            
+
             if (processInfo != null && processInfo.IsOnline())
             {
                 Log.Info($"检测到进程 {processId} 正在运行，准备停止进程避免文件占用");
-                
+
                 // 4. await操作前确保有EntityRef
                 self = selfRef;
                 bool killSuccess = await ServerProcessHelper.KillProcess(self.Scene(), processId);
-                
+
                 if (!killSuccess)
                 {
                     // 5. await后立即重新获取Entity
@@ -235,12 +255,12 @@ public static async ETTask ProcessUpdate(this UpdateCoordinatorComponent self, U
                     task.UpdateProcessProgress(processId, UpdateStep.StoppingProcess, UpdateStepStatus.Failed, 0, "停止进程失败");
                     return false;
                 }
-                
+
                 // 6. 每次await后都要重新获取
                 self = selfRef;
                 await self.Root().GetComponent<TimerComponent>().WaitAsync(3000);
             }
-            
+
             // 7. 继续业务逻辑时重新获取Entity
             task = taskRef;
             var success = ServerMachineHelper.InstallServer(
@@ -249,13 +269,13 @@ public static async ETTask ProcessUpdate(this UpdateCoordinatorComponent self, U
                 processInfo.Version,
                 processInfo.InstallPath
             );
-            
+
             if (success)
             {
                 // 8. 等待操作也要重新获取EntityRef
                 self = selfRef;
                 await self.Root().GetComponent<TimerComponent>().WaitAsync(2000);
-                
+
                 // 9. 最后更新状态时重新获取
                 task = taskRef;
                 task.UpdateProcessProgress(processId, UpdateStep.Updating, UpdateStepStatus.Success, 100, "更新成功");
@@ -275,7 +295,7 @@ public static async ETTask ProcessUpdate(this UpdateCoordinatorComponent self, U
             return false;
         }
     }
-    
+
     return true;
 }
 
@@ -285,10 +305,10 @@ public static async ETTask ProcessUpdate(this UpdateCoordinatorComponent self, U
     foreach (int processId in task.TargetProcessIds)
     {
         task.UpdateProgress(processId, "开始处理");
-        
+
         // await操作
         await SomeAsyncOperation();
-        
+
         // 错误：await后直接使用Entity会导致ET分析器报错
         task.UpdateProgress(processId, "处理完成");  // 分析器错误！
         self.SomeMethod();  // 分析器错误！
@@ -374,7 +394,7 @@ namespace ET  // 或 ET.Client, ET.Server
 // Model/Hotfix 程序集 - 共享代码
 namespace ET { }
 
-// ModelView/HotfixView 程序集 - 客户端代码  
+// ModelView/HotfixView 程序集 - 客户端代码
 namespace ET.Client { }
 
 // 服务器专用代码
@@ -425,7 +445,7 @@ Packages/cn.etetet.{包名}/
 
 ### 文件命名规范
 - Entity文件：`{功能名}Component.cs`
-- System文件：`{功能名}ComponentSystem.cs`  
+- System文件：`{功能名}ComponentSystem.cs`
 - 配置文件：`{功能名}Config.cs`
 - 协议文件：`{协议名}.proto`
 
@@ -462,13 +482,13 @@ public static bool DoSomething(this ExampleComponent self, int value)
 ```csharp
 // 命名规范
 public class PlayerComponent        // 类名：PascalCase
-public static void GetItem()       // 方法名：PascalCase  
+public static void GetItem()       // 方法名：PascalCase
 public string playerName;          // 字段名：camelCase
 private string _internalField;     // 私有字段：_camelCase
 public const int MAX_PLAYERS = 100; // 常量：UPPER_SNAKE_CASE
 
 // 代码格式
-if (condition) 
+if (condition)
 {
     // tab缩进
 }
@@ -512,7 +532,7 @@ public static async ETTask SafeAsyncWork(this ExampleComponent self)
 // UI Entity必须继承特定接口
 public class ExamplePanelComponent : Entity, IAwake, IDestroy,
     IYIUIBind,          // UI绑定
-    IYIUIInitialize,    // UI初始化  
+    IYIUIInitialize,    // UI初始化
     IYIUIOpen,          // UI打开
     IYIUIClose          // UI关闭
 {
@@ -570,7 +590,7 @@ public class WebMachineRequestJson_CreateUpdateTask
     public string ProcessId { get; set; }
     public string Version { get; set; }
     public string UpdateUrl { get; set; }
-    
+
     // ❌ 错误：使用camelCase
     // public string processId { get; set; }
     // public string version { get; set; }
@@ -674,7 +694,7 @@ public static void ProcessValue(this ExampleComponent self, object value)
 {
     // 错误：会产生装箱
     // if (value.Equals(0)) { }
-    
+
     // 正确：使用泛型避免装箱
     if (value is int intValue && intValue == 0) { }
 }
@@ -731,7 +751,7 @@ private static void Awake(this ExampleComponent self)
 public class ProcessInfo : Entity, IAwake
 {
     public string ProcessId;     // 正确
-    public string Version;       // 正确 
+    public string Version;       // 正确
     public string InstallPath;   // 正确
 }
 
@@ -767,7 +787,7 @@ public static void UpdateInfo(this ProcessInfo self, string installPath)
 // 文件1：WebMachineMessages.cs
 public class WebMachineRequestJson_Response { }
 
-// 文件2：另一个文件.cs  
+// 文件2：另一个文件.cs
 public class WebMachineRequestJson_Response { }  // 重复定义
 
 // ✅ 正确：一个类只在一个文件中定义，其他地方引用
@@ -786,7 +806,7 @@ public class WebMachineRequestJson_CreateUpdateTask
 public async ETTask Handle(Scene scene, HttpListenerContext context)
 {
     var req = MongoHelper.FromJson<WebMachineRequestJson_CreateUpdateTask>(postData);
-    
+
     // 使用字段名必须与消息类定义一致
     string processId = req.ProcessId;  // 必须匹配消息类中的字段名
     string version = req.Version;      // 必须匹配消息类中的字段名
